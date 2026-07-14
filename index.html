@@ -164,6 +164,26 @@
   footer .sig{font-weight:600;font-size:1.05rem;color:var(--text)}
 
   @media(prefers-reduced-motion:reduce){.glow{animation:none}*{scroll-behavior:auto}}
+
+  .progress-wrap{height:3px;background:rgba(0,212,255,.08)}
+  .progress-bar{height:100%;width:20%;background:linear-gradient(90deg,var(--cyan),var(--purple));transition:width .5s cubic-bezier(.4,0,.2,1)}
+  .chips-col{flex-direction:column;align-items:stretch}
+  .chips-col .chip{border-radius:12px;justify-content:flex-start}
+  .stage h3.sub{font-weight:800;font-size:1.15rem;margin:34px 0 14px;letter-spacing:-.01em}
+  .verdict{border:1px solid var(--line-strong);background:linear-gradient(135deg,rgba(0,212,255,.09),rgba(123,47,255,.07));border-radius:16px;padding:22px 24px;margin-bottom:24px;font-size:1rem;line-height:1.65}
+  .verdict b{color:var(--cyan)}
+  .layer.warn::before{background:linear-gradient(var(--orange),#ff5f57)}
+  .node .nd.why{color:var(--cyan);margin-top:8px;font-size:.75rem;line-height:1.5}
+  .node .nd.why b{color:#fff}
+  .weekcard{display:flex;gap:18px;align-items:flex-start;border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:12px;background:var(--panel-2)}
+  .weekcard .wn{font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);min-width:76px;padding-top:3px}
+  .weekcard .wt{font-weight:700;font-size:1rem;margin-bottom:5px}
+  .weekcard .wd{font-size:.85rem;color:var(--text-dim);line-height:1.6}
+  .savebox{margin-top:26px;border:1px solid var(--line-strong);border-radius:16px;padding:22px;background:var(--glass);transition:.4s}
+  .savebox.ok{border-color:var(--cyan);background:rgba(0,212,255,.08)}
+  #saveMsg{font-size:.9rem;color:var(--text-dim);line-height:1.6}
+  .btn:disabled{opacity:.6;cursor:not-allowed}
+  @media print{.bg,.stepper,.nav-row,.progress-wrap,.savebox{display:none!important}.stage{display:block!important}}
 </style>
 </head>
 <body>
@@ -196,149 +216,262 @@
   </section>
 
   <div class="stepper" id="stepper">
-    <div class="s active" data-s="1"><span class="num">1</span> Diagnóstico</div>
-    <div class="s" data-s="2"><span class="num">2</span> Arquitectura</div>
-    <div class="s" data-s="3"><span class="num">3</span> Flujos</div>
-    <div class="s" data-s="4"><span class="num">4</span> Código</div>
-    <div class="s" data-s="5"><span class="num">5</span> Métricas</div>
+    <div class="s active" data-s="1"><span class="num">1</span> Perfil</div>
+    <div class="s" data-s="2"><span class="num">2</span> Tu madurez en IA</div>
+    <div class="s" data-s="3"><span class="num">3</span> Tu trabajo</div>
+    <div class="s" data-s="4"><span class="num">4</span> Tu ecosistema</div>
+    <div class="s" data-s="5"><span class="num">5</span> Plan 30 días</div>
   </div>
 
   <div class="console">
     <div class="console-head">
       <div class="lights"><span></span><span></span><span></span></div>
-      <div class="title">icone · arquitecto-ecosistema · <b id="stageName">diagnostico.stage</b></div>
+      <div class="title">icone · arquitecto-ecosistema · <b id="stageName">perfil.stage</b></div>
     </div>
+    <div class="progress-wrap"><div class="progress-bar" id="progBar"></div></div>
     <div class="console-body">
 
-      <!-- STAGE 1 -->
+      <!-- ================= BLOQUE A · PERFIL ================= -->
       <div class="stage on" id="st1">
-        <h2>Diagnóstico inicial</h2>
-        <p class="lead">Cuanto más preciso el input, más afinado el ecosistema. Nada se envía a ningún servidor: todo vive en tu navegador.</p>
+        <h2>Empecemos por ti</h2>
+        <p class="lead">21 preguntas en tres bloques. Toma 4 minutos. Al final tendrás un ecosistema armado con lo que ya pagas — no una lista de herramientas para comprar.</p>
         <div class="grid2">
-          <div class="field"><label><span>01</span>Tu rol / ocupación</label><input id="q_role" placeholder="Ej. Consultor, conferencista, gerente…"></div>
-          <div class="field"><label><span>02</span>Sector</label><input id="q_sector" placeholder="Ej. Formación, marketing, tecnología…"></div>
+          <div class="field"><label><span>01</span>Tu nombre</label><input id="q_nombre" placeholder="Cómo te llamas"></div>
+          <div class="field"><label><span>02</span>Tu correo</label><input id="q_email" type="email" placeholder="Para enviarte tu plan"><div class="hint">Solo para hacerte llegar el resultado. No se comparte con nadie.</div></div>
         </div>
-        <div class="field">
-          <label><span>03</span>Ecosistema base que ya usas</label>
-          <div class="chips" data-single="eco">
-            <div class="chip" data-v="Google Workspace">🟦 Google Workspace</div>
-            <div class="chip" data-v="Microsoft 365">🟧 Microsoft 365</div>
-            <div class="chip" data-v="Ambos">🔗 Ambos</div>
+        <div class="grid2">
+          <div class="field"><label><span>03</span>Tu rol u ocupación</label><input id="q_role" placeholder="Ej. Consultor, conferencista, gerente…"></div>
+          <div class="field"><label><span>04</span>Tu sector</label><input id="q_sector" placeholder="Ej. Formación, marketing, retail…"></div>
+        </div>
+        <div class="field"><label><span>05</span>¿Con cuánta gente trabajas?</label>
+          <div class="chips" data-single="equipo">
+            <div class="chip" data-v="Solo yo">🧍 Solo yo</div>
+            <div class="chip" data-v="2–5 personas">👥 2–5 personas</div>
+            <div class="chip" data-v="6–20 personas">👨‍👩‍👦 6–20 personas</div>
+            <div class="chip" data-v="Más de 20">🏢 Más de 20</div>
           </div>
         </div>
-        <div class="field">
-          <label><span>04</span>Tareas repetitivas que quieres delegar</label>
-          <div class="chips" data-multi="tasks">
+        <div class="nav-row"><span></span><button class="btn btn-primary" onclick="go(2)">Siguiente: tu madurez en IA →</button></div>
+      </div>
+
+      <!-- ================= BLOQUE B · MADUREZ ================= -->
+      <div class="stage" id="st2">
+        <h2>Dónde estás hoy con la IA</h2>
+        <p class="lead">Este bloque es el que más pesa. Define si tu plan es <b>“aprovecha lo que ya tienes”</b> o <b>“empieza gratis y sin gastar”</b>.</p>
+
+        <div class="field"><label><span>06</span>¿Qué membresías de IA ya pagas?</label>
+          <div class="chips" data-multi="membresias">
+            <div class="chip" data-v="Claude Pro/Max">🟠 Claude (Pro o Max)</div>
+            <div class="chip" data-v="ChatGPT Plus/Pro">🟢 ChatGPT (Plus o Pro)</div>
+            <div class="chip" data-v="Google AI Plus/Pro/Ultra">🔵 Google AI (Plus, Pro o Ultra)</div>
+            <div class="chip" data-v="Perplexity Pro/Max">🟣 Perplexity (Pro o Max)</div>
+            <div class="chip" data-v="Copilot M365">🟦 Copilot de Microsoft 365</div>
+            <div class="chip" data-v="Google Workspace">📧 Google Workspace (correo con mi dominio)</div>
+            <div class="chip" data-v="Ninguna">⭕ Ninguna todavía</div>
+          </div>
+          <div class="hint">La pregunta más importante del diagnóstico: primero exprimimos lo que ya pagas.</div>
+        </div>
+
+        <div class="grid2">
+          <div class="field"><label><span>07</span>¿Cuánto llevas usando IA en serio?</label>
+            <select id="q_antiguedad">
+              <option>Apenas estoy empezando</option>
+              <option>Menos de 3 meses</option>
+              <option selected>Entre 3 y 12 meses</option>
+              <option>Más de un año</option>
+            </select></div>
+          <div class="field"><label><span>08</span>¿Con qué frecuencia la usas?</label>
+            <select id="q_frecuencia">
+              <option>Casi nunca</option>
+              <option>Algunas veces al mes</option>
+              <option selected>Varias veces por semana</option>
+              <option>Todos los días</option>
+              <option>Todo el día, es mi herramienta central</option>
+            </select></div>
+        </div>
+
+        <div class="field"><label><span>09</span>¿Cuál de estas frases te describe mejor hoy?</label>
+          <div class="chips chips-col" data-single="madurez">
+            <div class="chip" data-v="1">1 · Le hago preguntas sueltas y copio la respuesta</div>
+            <div class="chip" data-v="2">2 · Tengo prompts que reutilizo, los guardo en algún lado</div>
+            <div class="chip" data-v="3">3 · Tengo instrucciones o proyectos configurados que recuerdan mi contexto</div>
+            <div class="chip" data-v="4">4 · La IA trabaja con mis archivos y plantillas reales</div>
+            <div class="chip" data-v="5">5 · Tengo tareas que se ejecutan solas de principio a fin</div>
+          </div>
+          <div class="hint">Sé honesto — el plan se rompe si el punto de partida está inflado.</div>
+        </div>
+
+        <div class="field"><label><span>10</span>¿Qué de esto ya hiciste alguna vez?</label>
+          <div class="chips" data-multi="ya_hecho">
+            <div class="chip" data-v="Asistente personalizado">🎯 Crear un asistente personalizado (Gem o GPT)</div>
+            <div class="chip" data-v="Proyectos Claude">📂 Usar Proyectos en Claude</div>
+            <div class="chip" data-v="NotebookLM">📔 Usar NotebookLM</div>
+            <div class="chip" data-v="Deep Research">🔬 Usar investigación profunda (Deep Research)</div>
+            <div class="chip" data-v="Subir plantillas">📎 Subirle mis plantillas o documentos</div>
+            <div class="chip" data-v="Conectar Drive/correo">🔗 Conectarla a mi Drive o mi correo</div>
+            <div class="chip" data-v="Tarea programada">⏰ Programar una tarea que se repite sola</div>
+            <div class="chip" data-v="Nada de esto">⭕ Nada de esto todavía</div>
+          </div>
+        </div>
+
+        <div class="field"><label><span>11</span>¿Dónde viven tu correo y tus archivos?</label>
+          <div class="chips" data-single="ecosistema">
+            <div class="chip" data-v="Google Workspace">🟢 Google Workspace (mi dominio)</div>
+            <div class="chip" data-v="Gmail personal">📮 Gmail personal (@gmail.com)</div>
+            <div class="chip" data-v="Microsoft 365">🟦 Microsoft 365 / Outlook</div>
+            <div class="chip" data-v="Mixto">🔀 Mezclado, un poco de cada uno</div>
+          </div>
+        </div>
+
+        <div class="field"><label><span>12</span>Después de un curso o entrenamiento de IA, ¿qué te frenó para aplicarlo?</label>
+          <div class="chips" data-multi="frenos">
+            <div class="chip" data-v="Falta de tiempo">⏳ No tuve tiempo de sentarme a montarlo</div>
+            <div class="chip" data-v="No sé por dónde empezar">🧭 No supe por dónde empezar</div>
+            <div class="chip" data-v="Se me olvida">🌀 Se me olvidó, volví a mi forma de siempre</div>
+            <div class="chip" data-v="Sin plantillas listas">📄 Mis plantillas no estaban listas</div>
+            <div class="chip" data-v="Desconfianza del resultado">🤨 No confío del todo en el resultado</div>
+            <div class="chip" data-v="Sin quién resolver dudas">🙋 No tenía a quién preguntarle cuando me trababa</div>
+            <div class="chip" data-v="Sí lo apliqué">✅ Nada, sí lo apliqué</div>
+          </div>
+          <div class="hint">Esto define el ritmo del plan de 30 días, no solo las herramientas.</div>
+        </div>
+
+        <div class="nav-row"><button class="btn btn-ghost" onclick="go(1)">← Perfil</button><button class="btn btn-primary" onclick="go(3)">Siguiente: tu trabajo →</button></div>
+      </div>
+
+      <!-- ================= BLOQUE C · TRABAJO ================= -->
+      <div class="stage" id="st3">
+        <h2>Qué haces cada día</h2>
+        <p class="lead">Aquí sale el material con el que se construyen tus flujos.</p>
+
+        <div class="field"><label><span>13</span>Tareas repetitivas que quieres delegar</label>
+          <div class="chips" data-multi="tareas">
             <div class="chip" data-v="Actas de reunión">📝 Actas de reunión</div>
             <div class="chip" data-v="Presentaciones">📊 Presentaciones corporativas</div>
             <div class="chip" data-v="Análisis de datos">📈 Análisis de datos</div>
             <div class="chip" data-v="Triage de correo">✉️ Triage de correo</div>
             <div class="chip" data-v="Investigación">🔎 Investigación</div>
             <div class="chip" data-v="Informes">📄 Redacción de informes</div>
+            <div class="chip" data-v="Propuestas">🤝 Propuestas comerciales</div>
+            <div class="chip" data-v="Contenido">📱 Contenido y publicaciones</div>
+            <div class="chip" data-v="Material formativo">🎓 Material formativo</div>
           </div>
-          <div class="hint">Elige todas las que apliquen — cada una se convierte en un flujo.</div>
+          <textarea id="q_tasks_free" style="margin-top:14px" placeholder="¿Hay otra tarea repetitiva que no está en la lista? Escríbela aquí — una por línea."></textarea>
+          <div class="hint">Espacio abierto: lo que escribas aquí también se convierte en un flujo.</div>
         </div>
+
         <div class="grid2">
-          <div class="field"><label><span>05</span>Tiempo perdido al día (aprox.)</label>
-            <select id="q_time"><option>Menos de 1 hora</option><option selected>1.5 – 2.5 horas</option><option>Más de 3 horas</option></select></div>
-          <div class="field"><label><span>06</span>¿Manejas datos confidenciales?</label>
-            <select id="q_conf"><option>No, todo puede ir a herramientas externas</option><option selected>Sí, requiere anonimizar antes de salir</option><option>Sí, estricto — solo herramientas internas</option></select></div>
+          <div class="field"><label><span>14</span>¿Cuánto tiempo al día te consumen esas tareas?</label>
+            <select id="q_time">
+              <option data-h="0.3">Menos de 30 minutos</option>
+              <option data-h="0.6">Entre 30 minutos y 1 hora</option>
+              <option data-h="1.2">Entre 1 y 2 horas</option>
+              <option data-h="2.0" selected>Entre 2 y 3 horas</option>
+              <option data-h="2.8">Más de 3 horas</option>
+              <option data-h="1.2">No lo he medido todavía</option>
+            </select>
+            <div class="hint">No es tiempo perdido: es tiempo recuperable.</div></div>
+          <div class="field"><label><span>15</span>De todas, ¿cuál te duele más?</label>
+            <input id="q_dolor" placeholder="La que harías desaparecer hoy mismo">
+            <div class="hint">Por esa empieza tu plan.</div></div>
         </div>
-        <div class="field"><label><span>07</span>¿Qué harías con 2 horas libres al día?</label>
+
+        <div class="field"><label><span>16</span>¿Qué entregables produces?</label>
+          <div class="chips" data-multi="entregables">
+            <div class="chip" data-v="Presentaciones">📊 Presentaciones</div>
+            <div class="chip" data-v="Informes">📄 Informes</div>
+            <div class="chip" data-v="Actas">📝 Actas</div>
+            <div class="chip" data-v="Propuestas">🤝 Propuestas</div>
+            <div class="chip" data-v="Análisis">📈 Análisis de datos</div>
+            <div class="chip" data-v="Contenido">📱 Contenido</div>
+            <div class="chip" data-v="Material formativo">🎓 Material formativo</div>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="field"><label><span>17</span>¿Tienes plantillas corporativas definidas?</label>
+            <select id="q_plantillas">
+              <option>Sí, en Google (Docs / Slides)</option>
+              <option>Sí, en Office (Word / PowerPoint)</option>
+              <option selected>A medias — existen pero no están ordenadas</option>
+              <option>No tengo plantillas</option>
+            </select></div>
+          <div class="field"><label><span>18</span>¿Manejas datos confidenciales?</label>
+            <select id="q_conf">
+              <option>No, todo puede ir a herramientas externas</option>
+              <option selected>Sí, requiere anonimizar antes de salir</option>
+              <option>Sí, estricto — solo herramientas aprobadas</option>
+            </select></div>
+        </div>
+
+        <div class="field"><label><span>19</span>¿Cuánto puedes invertir al mes en IA?</label>
+          <div class="chips" data-single="presupuesto">
+            <div class="chip" data-v="0">💸 Cero — solo gratis</div>
+            <div class="chip" data-v="20">💵 Hasta 20 USD</div>
+            <div class="chip" data-v="60">💳 Entre 20 y 60 USD</div>
+            <div class="chip" data-v="100">🏦 Más de 60 USD</div>
+          </div>
+          <div class="hint">Con cero también se arma un ecosistema serio. Solo cambia el camino.</div>
+        </div>
+
+        <div class="field"><label><span>20</span>¿Qué harías con 2 horas libres al día?</label>
           <textarea id="q_goal" placeholder="Tu respuesta calibra las prioridades del ecosistema…"></textarea></div>
-        <div class="nav-row"><span></span><button class="btn btn-primary" onclick="buildProfile();go(2)">Generar arquitectura →</button></div>
-      </div>
 
-      <!-- STAGE 2 -->
-      <div class="stage" id="st2">
-        <h2>Arquitectura del ecosistema</h2>
-        <p class="lead">Tres capas orquestadas por Cowork. Cada nodo indica cómo se conecta de verdad — sin promesas que las herramientas no cumplen.</p>
-        <div class="summary-card" id="profileCard" style="display:none"><h4>Perfil detectado</h4><div id="profileRows"></div></div>
-        <div class="blueprint">
-          <div class="layer orch"><div class="lname">Capa de orquestación</div><div class="nodes">
-            <div class="node"><div class="nt">🧠 Cowork de Claude</div><div class="nd">Lee el brief, decide el flujo, coordina herramientas y sintetiza.</div><span class="badge nativo">nativo</span></div>
-          </div></div>
-          <div class="layer data"><div class="lname">Capa de datos & entrada/salida</div><div class="nodes">
-            <div class="node"><div class="nt">📁 Google Drive</div><div class="nd">Documentos fuente y destino de entregables.</div><span class="badge nativo">MCP nativo</span></div>
-            <div class="node"><div class="nt">📅 Gmail · Calendar</div><div class="nd">Reuniones, borradores, seguimiento.</div><span class="badge nativo">MCP nativo</span></div>
-            <div class="node"><div class="nt">🔎 Perplexity</div><div class="nd">Investigación con fuentes citadas.</div><span class="badge browser">vía navegador</span></div>
-            <div class="node"><div class="nt">🟦 Copilot (M365)</div><div class="nd">Solo si tu redacción vive en Office.</div><span class="badge manual">manual / opcional</span></div>
-          </div></div>
-          <div class="layer exec"><div class="lname">Capa de ejecución</div><div class="nodes">
-            <div class="node"><div class="nt">⚙️ Google Apps Script</div><div class="nd">Rellena plantillas, crea Docs/Slides, mueve datos.</div><span class="badge nativo">script</span></div>
-            <div class="node"><div class="nt">🐍 Python (pandas)</div><div class="nd">Análisis, gráficos y dashboards en Cowork.</div><span class="badge nativo">nativo</span></div>
-            <div class="node"><div class="nt">🌐 Claude in Chrome</div><div class="nd">Acciones en apps sin API abierta.</div><span class="badge browser">navegador</span></div>
-            <div class="node"><div class="nt">🤖 GLM (API)</div><div class="nd">LLM alternativo/económico para tareas masivas.</div><span class="badge api">vía API</span></div>
-          </div></div>
+        <div class="field"><label><span>21</span>¿Quieres que revisemos juntos tu plan?</label>
+          <div class="chips" data-single="acompanamiento">
+            <div class="chip" data-v="Sí, contáctenme">📞 Sí, quiero acompañamiento</div>
+            <div class="chip" data-v="Solo el plan">📥 Por ahora solo el plan</div>
+          </div>
         </div>
-        <div class="note"><b>Nota de honestidad técnica:</b> "GLM 5.0" no existe públicamente aún — la versión real disponible es GLM-4.6. Perplexity y Copilot no se orquestan como microservicios internos desde Cowork; se alcanzan por navegador o de forma manual. Todo lo marcado <b>nativo</b> sí es orquestación directa.</div>
-        <div class="nav-row"><button class="btn btn-ghost" onclick="go(1)">← Diagnóstico</button><button class="btn btn-primary" onclick="go(3)">Ver flujos →</button></div>
+
+        <div class="nav-row"><button class="btn btn-ghost" onclick="go(2)">← Madurez</button><button class="btn btn-primary" onclick="buildProfile();go(4)">Generar mi ecosistema →</button></div>
       </div>
 
-      <!-- STAGE 3 -->
-      <div class="stage" id="st3">
-        <h2>Flujos automatizados</h2>
-        <p class="lead">Cada flujo es un guion que Cowork ejecuta. Toda acción irreversible — enviar, publicar, borrar — pide tu aprobación antes.</p>
-        <div id="flowContainer"></div>
-        <div class="nav-row"><button class="btn btn-ghost" onclick="go(2)">← Arquitectura</button><button class="btn btn-primary" onclick="go(4)">Ver código →</button></div>
-      </div>
-
-      <!-- STAGE 4 -->
+      <!-- ================= STAGE 4 · ECOSISTEMA ================= -->
       <div class="stage" id="st4">
-        <h2>Código de ejemplo</h2>
-        <p class="lead">Fragmentos reales en concepto. Cópialos, ajusta los IDs y pruébalos con un flujo a la vez.</p>
-        <div class="codeblock"><div class="cbhead"><span>apps_script · generarPresentacion.gs</span><button class="copybtn" onclick="cp(this)">copiar</button></div>
-<pre><span class="cm">// Rellena tu plantilla de Slides preservando la marca ICONE</span>
-<span class="ck">function</span> <span class="cf">generarPresentacion</span>(datos) {
-  <span class="ck">const</span> plantillaId = <span class="cs">'TU_PLANTILLA_SLIDES_ID'</span>;
-  <span class="ck">const</span> copia = DriveApp.<span class="cf">getFileById</span>(plantillaId)
-                 .<span class="cf">makeCopy</span>(<span class="cs">'Estatus - '</span> + datos.fecha);
-  <span class="ck">const</span> pres = SlidesApp.<span class="cf">openById</span>(copia.<span class="cf">getId</span>());
-  Object.<span class="cf">keys</span>(datos).<span class="cf">forEach</span>(k =&gt;
-    pres.<span class="cf">getSlides</span>().<span class="cf">forEach</span>(s =&gt;
-      s.<span class="cf">replaceAllText</span>(<span class="cs">'{{'</span> + k + <span class="cs">'}}'</span>, String(datos[k]))));
-  pres.<span class="cf">saveAndClose</span>();
-  <span class="ck">return</span> copia.<span class="cf">getUrl</span>();
-}</pre></div>
-        <div class="codeblock"><div class="cbhead"><span>python · analisis_avance.py</span><button class="copybtn" onclick="cp(this)">copiar</button></div>
-<pre><span class="ck">import</span> pandas <span class="ck">as</span> pd
-df = pd.<span class="cf">read_csv</span>(<span class="cs">"avance.csv"</span>)
-resumen = df.<span class="cf">groupby</span>(<span class="cs">"proyecto"</span>)[<span class="cs">"progreso"</span>].<span class="cf">agg</span>([<span class="cs">"mean"</span>, <span class="cs">"count"</span>])
-riesgos = df[df[<span class="cs">"progreso"</span>] &lt; <span class="cs">50</span>]   <span class="cm"># proyectos en alerta</span>
-resumen.<span class="cf">to_excel</span>(<span class="cs">"resumen.xlsx"</span>)</pre></div>
-        <div class="codeblock"><div class="cbhead"><span>cowork · router.pseudo</span><button class="copybtn" onclick="cp(this)">copiar</button></div>
-<pre><span class="cm"># Router de decisiones del orquestador</span>
-<span class="ck">LEER</span> brief_del_usuario
-<span class="ck">SI</span> contiene(<span class="cs">"acta"</span>)         → Flujo_Actas
-<span class="ck">SI</span> contiene(<span class="cs">"presentación"</span>) → Flujo_Slides
-<span class="ck">SI</span> contiene(<span class="cs">"datos"</span>)        → Flujo_Analisis
-<span class="ck">SIEMPRE</span>: pedir aprobación antes de enviar / publicar / borrar</pre></div>
-        <div class="note"><b>Regla de oro:</b> ninguna acción irreversible se ejecuta sin tu confirmación, y los datos confidenciales se anonimizan antes de tocar herramientas externas.</div>
-        <div class="nav-row"><button class="btn btn-ghost" onclick="go(3)">← Flujos</button><button class="btn btn-primary" onclick="go(5)">Ver métricas →</button></div>
+        <h2>Tu ecosistema recomendado</h2>
+        <p class="lead" id="rutaLead">Armado sobre lo que ya pagas y tu punto de partida real.</p>
+        <div class="verdict" id="verdict"></div>
+        <div class="summary-card" id="profileCard" style="display:none"><h4>Perfil detectado</h4><div id="profileRows"></div></div>
+        <div class="blueprint" id="stackContainer"></div>
+        <h3 class="sub">Tus flujos</h3>
+        <div id="flowContainer"></div>
+        <div class="nav-row"><button class="btn btn-ghost" onclick="go(3)">← Tu trabajo</button><button class="btn btn-primary" onclick="go(5)">Ver mi plan de 30 días →</button></div>
       </div>
 
-      <!-- STAGE 5 -->
+      <!-- ================= STAGE 5 · PLAN ================= -->
       <div class="stage" id="st5">
-        <h2>Métricas de éxito · 30 días</h2>
-        <p class="lead">Lo que no se mide, no se mejora. Estos son los indicadores para saber si tu ecosistema realmente funciona.</p>
+        <h2>Tu plan de 30 días</h2>
+        <p class="lead">Un flujo a la vez. Más herramientas no es más productividad.</p>
         <div class="metrics">
-          <div class="metric"><div class="mv" id="mHours">2.0h</div><div class="ml">Ahorradas al día</div></div>
-          <div class="metric"><div class="mv">80%</div><div class="ml">Entregables vía flujo</div></div>
-          <div class="metric"><div class="mv">↓60%</div><div class="ml">Ediciones sobre el output</div></div>
-          <div class="metric"><div class="mv">4</div><div class="ml">Flujos activos</div></div>
+          <div class="metric"><div class="mv" id="mHours">2.0h</div><div class="ml">Recuperables al día</div></div>
+          <div class="metric"><div class="mv" id="mCost">—</div><div class="ml">Costo del stack</div></div>
+          <div class="metric"><div class="mv" id="mLevel">—</div><div class="ml">Tu nivel hoy</div></div>
+          <div class="metric"><div class="mv" id="mFlows">—</div><div class="ml">Flujos a montar</div></div>
         </div>
-        <div class="summary-card" style="margin-top:26px"><h4>Cómo medir cada uno</h4>
-          <div class="row"><span>Tiempo ahorrado</span><span>Minutos por tarea, antes vs. después</span></div>
-          <div class="row"><span>Adopción</span><span>% de entregables generados con el flujo</span></div>
-          <div class="row"><span>Calidad</span><span>Nº de ediciones que haces al resultado</span></div>
-          <div class="row"><span>Impacto en decisiones</span><span>Análisis entregados a tiempo</span></div>
+        <div id="planContainer" style="margin-top:26px"></div>
+        <div class="summary-card"><h4>Cómo medir que funciona</h4>
+          <div class="row"><span>Tiempo recuperado</span><span>Minutos por tarea, antes vs. después</span></div>
+          <div class="row"><span>Adopción</span><span>% de entregables hechos con el flujo</span></div>
+          <div class="row"><span>Calidad</span><span>Nº de ediciones que le haces al resultado</span></div>
+          <div class="row"><span>Constancia</span><span>Días seguidos usando el flujo</span></div>
         </div>
-        <div class="note" style="border-left-color:var(--cyan)"><b style="color:var(--cyan)">Recomendación de adopción:</b> empieza por UN flujo (las actas suelen dar el mayor ROI inmediato), consolídalo una semana, y expande. Más herramientas no es más productividad.</div>
-        <div class="nav-row"><button class="btn btn-ghost" onclick="go(1)">↺ Nuevo diagnóstico</button><button class="btn btn-primary" onclick="window.print()">Guardar plan (PDF)</button></div>
+        <div class="note" style="border-left-color:var(--cyan)"><b style="color:var(--cyan)">Regla de adopción:</b> empieza por UN flujo — el que marcaste como el que más te duele. Consolídalo una semana antes de abrir el segundo. El 80% de los ecosistemas fracasan por montar cinco cosas a la vez.</div>
+        <div id="saveBox" class="savebox">
+          <div id="saveMsg">Guarda tu diagnóstico para recibir el plan y quedar en el registro.</div>
+          <div class="nav-row" style="margin-top:16px">
+            <button class="btn btn-ghost" onclick="go(1)">↺ Nuevo diagnóstico</button>
+            <div style="display:flex;gap:10px;flex-wrap:wrap">
+              <button class="btn btn-ghost" onclick="window.print()">Guardar PDF</button>
+              <button class="btn btn-primary" id="btnSave" onclick="saveDiag()">Enviar mi diagnóstico ✓</button>
+            </div>
+          </div>
+        </div>
       </div>
 
     </div>
   </div>
+
 
   <footer>
     <div class="legal">
@@ -351,61 +484,217 @@ resumen.<span class="cf">to_excel</span>(<span class="cs">"resumen.xlsx"</span>)
 </div>
 
 <script>
-const stageNames={1:'diagnostico.stage',2:'arquitectura.stage',3:'flujos.stage',4:'codigo.stage',5:'metricas.stage'};
+/* ============ ICONE · Arquitecto de Ecosistema · motor ============ */
+const SB_URL="https://nvgkhdrrxqdgxktfkioa.supabase.co";
+const SB_KEY="sb_publishable_d1RrtE7S-9a8e8mGKRRjxQ_4HU_nkDl";
+const SB_TABLE="icone_diagnosticos_eco";
+
+const stageNames={1:'perfil.stage',2:'madurez.stage',3:'trabajo.stage',4:'ecosistema.stage',5:'plan.stage'};
 function go(n){
   document.querySelectorAll('.stage').forEach(s=>s.classList.remove('on'));
   document.getElementById('st'+n).classList.add('on');
   document.getElementById('stageName').textContent=stageNames[n];
   document.querySelectorAll('#stepper .s').forEach(s=>{const i=+s.dataset.s;s.classList.toggle('active',i===n);s.classList.toggle('done',i<n);});
+  document.getElementById('progBar').style.width=(n/5*100)+'%';
   document.querySelector('.console').scrollIntoView({behavior:'smooth',block:'start'});
 }
-const state={eco:'Google Workspace',tasks:[]};
-document.querySelectorAll('.chips[data-single]').forEach(g=>{g.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{g.querySelectorAll('.chip').forEach(x=>x.classList.remove('sel'));c.classList.add('sel');state[g.dataset.single]=c.dataset.v;}));});
-document.querySelectorAll('.chips[data-multi]').forEach(g=>{g.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{c.classList.toggle('sel');state[g.dataset.multi]=[...g.querySelectorAll('.chip.sel')].map(x=>x.dataset.v);}));});
-document.querySelector('.chips[data-single] .chip').classList.add('sel');
 
-const FLOWS={
-  "Actas de reunión":{n:"01",save:"~35 min/reunión",steps:["<b>Calendar</b> detecta la reunión y su transcripción en Drive.","Cowork <b>lee el transcript</b> completo.","Claude <b>sintetiza</b>: resumen, decisiones y action items con responsable y fecha.","Apps Script crea un <b>Google Doc</b> con tu plantilla.","<b>Borrador de Gmail</b> a los asistentes — se envía solo con tu aprobación."]},
-  "Presentaciones":{n:"02",save:"~40 min/deck",steps:["Input: bullets o un Doc de estatus.","Claude arma la <b>narrativa</b>: portada, agenda, avances, riesgos, next steps.","Apps Script <b>duplica tu plantilla</b> de Slides y rellena los marcadores {{...}}.","Marca ICONE intacta, deck listo en minutos."]},
-  "Análisis de datos":{n:"03",save:"~25 min/análisis",steps:["Hoja fuente → Cowork ejecuta análisis en <b>Python/pandas</b>.","Genera hallazgos, <b>gráficos</b> y un XLSX limpio.","Redacta un <b>resumen ejecutivo</b> para pegar en tu presentación."]},
-  "Triage de correo":{n:"04",save:"~20 min/día",steps:["Gmail (MCP) clasifica por urgencia e intención.","Cowork propone <b>respuestas borrador</b> por categoría.","Tú apruebas; nada se envía automáticamente."]},
-  "Investigación":{n:"05",save:"~30 min/tema",steps:["Docs base en Drive → Claude <b>resume</b>.","Perplexity (vía navegador) aporta <b>datos externos citados</b>.","Claude consolida en un brief con fuentes."]},
-  "Informes":{n:"06",save:"~45 min/informe",steps:["Reúne datos de Drive + análisis + investigación.","Claude <b>redacta</b> el informe en Google Docs con tu estructura.","Copilot solo entra si el entregable final vive en Word."]}
+/* ---------- estado ---------- */
+const state={equipo:'Solo yo',membresias:[],madurez:'2',ya_hecho:[],ecosistema:'Gmail personal',
+             frenos:[],tareas:[],custom:[],entregables:[],presupuesto:'0',acompanamiento:'Solo el plan'};
+document.querySelectorAll('.chips[data-single]').forEach(g=>{g.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{
+  g.querySelectorAll('.chip').forEach(x=>x.classList.remove('sel'));c.classList.add('sel');state[g.dataset.single]=c.dataset.v;}));
+  g.querySelector('.chip').classList.add('sel');});
+document.querySelectorAll('.chips[data-multi]').forEach(g=>{g.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{
+  c.classList.toggle('sel');state[g.dataset.multi]=[...g.querySelectorAll('.chip.sel')].map(x=>x.dataset.v);}));});
+
+/* ---------- catálogo verificado (julio 2026) ---------- */
+const T={
+  cowork:{t:"Cowork de Claude",e:"🧠",d:"Trabaja sobre tus carpetas y herramientas: arma decks, hojas y documentos, y corre tareas programadas aunque cierres el portátil.",c:"Incluido desde Claude Pro"},
+  proyectos:{t:"Proyectos de Claude",e:"📂",d:"Un espacio por cliente o tema, con tus documentos y tus instrucciones fijas. Deja de repetir tu contexto en cada chat.",c:"Desde Claude Pro"},
+  claudefree:{t:"Claude (plan gratis)",e:"💬",d:"Chat, búsqueda web, memoria entre conversaciones, análisis de archivos y artefactos. Suficiente para empezar en serio.",c:"Gratis"},
+  excel:{t:"Claude para Excel",e:"📊",d:"Lee tus libros, respeta las fórmulas y cita celda por celda de dónde sacó cada número.",c:"Desde Claude Pro"},
+  gemini:{t:"Gemini (app)",e:"🔵",d:"Deep Research, Canvas y voz en vivo. Todo esto ya es gratis — mucha gente paga sin necesitarlo.",c:"Gratis"},
+  gems:{t:"Gems de Gemini",e:"🎯",d:"Tu experto a medida: le fijas las instrucciones una vez y le subes tus archivos. Se acabó el prompt largo cada vez.",c:"Gratis"},
+  notebook:{t:"NotebookLM",e:"📔",d:"Le das hasta 50 fuentes y responde solo con eso, citando. Genera mapas mentales, informes y un audio tipo pódcast de tu propio material.",c:"Gratis · 50 fuentes por cuaderno"},
+  geminidocs:{t:"Gemini en Gmail y Docs",e:"📧",d:"Redacta dentro de tu correo y tus documentos, sin copiar y pegar. Ojo: esto NO viene con la cuenta gratuita.",c:"Desde Google AI Plus · US$4.99/mes"},
+  notebookpro:{t:"NotebookLM Pro",e:"📔",d:"Sube de 50 a 300 fuentes por cuaderno y de 3 a 20 audios al día. Vale la pena solo si ya llenaste el gratis.",c:"Con Google AI Pro · US$19.99/mes"},
+  workspace:{t:"Google Workspace",e:"🟢",d:"Correo con tu dominio y la IA ya incluida dentro de Docs, Gmail y Meet — incluido “toma notas por mí” en las reuniones.",c:"Desde ~US$9.60/usuario"},
+  perplexity:{t:"Perplexity (gratis)",e:"🟣",d:"Búsqueda que responde con las fuentes a la vista. Para verificar un dato rápido sin abrir diez pestañas.",c:"Gratis · uso diario limitado"},
+  perplexitypro:{t:"Perplexity Pro",e:"🟣",d:"Deep Research sin freno, el navegador Comet y fuentes de pago (Statista, PitchBook, S&P) incluidas.",c:"US$20/mes"},
+  glm:{t:"GLM-5.2 (chat.z.ai)",e:"🤖",d:"Modelo abierto y gratis, muy capaz. Úsalo para volumen y trabajo genérico — nunca con datos de tus clientes.",c:"Gratis · con reserva"},
+  otras:{t:"DeepSeek · Qwen · Mistral",e:"🆓",d:"Alternativas gratis reales para desahogar volumen cuando topes los límites de tu herramienta principal.",c:"Gratis"},
+  copilot:{t:"Copilot de Microsoft 365",e:"🟦",d:"Tiene sentido solo si tu entregable final vive en Word o PowerPoint y ya lo pagas.",c:"Ya lo pagas"}
 };
-const DEFAULT_FLOWS=["Actas de reunión","Presentaciones","Análisis de datos"];
-function renderFlows(){
-  const chosen=(state.tasks&&state.tasks.length)?state.tasks:DEFAULT_FLOWS;
-  const c=document.getElementById('flowContainer');c.innerHTML='';
-  chosen.forEach((t,i)=>{const f=FLOWS[t];if(!f)return;const d=document.createElement('details');d.className='flowcard';if(i===0)d.open=true;
-    d.innerHTML=`<summary><span class="fnum">${f.n}</span>${t}<span class="save">${f.save}</span></summary><div class="flowsteps"><ol>${f.steps.map(s=>`<li>${s}</li>`).join('')}</ol></div>`;c.appendChild(d);});
-}
-function buildProfile(){
-  const role=document.getElementById('q_role').value||'Profesional';
-  const sector=document.getElementById('q_sector').value||'—';
-  const time=document.getElementById('q_time').value;
-  const conf=document.getElementById('q_conf').value;
-  const rows=[['Rol',role],['Sector',sector],['Ecosistema',state.eco],['Tareas',state.tasks.length?state.tasks.join(', '):'(por definir)'],['Tiempo perdido',time],['Confidencialidad',conf]];
-  document.getElementById('profileRows').innerHTML=rows.map(r=>`<div class="row"><span>${r[0]}</span><span>${r[1]}</span></div>`).join('');
-  document.getElementById('profileCard').style.display='block';
-  document.getElementById('mHours').textContent=time.includes('3')?'2.5h':time.includes('1.5')?'2.0h':'0.8h';
-  renderFlows();
-}
-renderFlows();
-function cp(btn){const code=btn.closest('.codeblock').querySelector('pre').innerText;navigator.clipboard.writeText(code).then(()=>{btn.textContent='copiado ✓';setTimeout(()=>btn.textContent='copiar',1600)});}
 
-/* Partículas conectadas */
-const cv=document.createElement('canvas');document.querySelector('.bg').prepend(cv);
-const ctx=cv.getContext('2d');let W,H,pts;
-const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
-function resize(){W=cv.width=innerWidth;H=cv.height=innerHeight;pts=Array.from({length:Math.min(70,Math.floor(W/22))},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3}));}
-resize();addEventListener('resize',resize);
-function tick(){ctx.clearRect(0,0,W,H);
-  for(const p of pts){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;}
-  for(let i=0;i<pts.length;i++){for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.hypot(dx,dy);
-    if(d<130){ctx.strokeStyle=`rgba(0,212,255,${.14*(1-d/130)})`;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.stroke();}}
-    ctx.fillStyle='rgba(123,47,255,.55)';ctx.beginPath();ctx.arc(pts[i].x,pts[i].y,1.4,0,7);ctx.fill();}
-  if(!reduce)requestAnimationFrame(tick);}
-tick();
+/* ---------- flujos ---------- */
+const FLOWS={
+ "Actas de reunión":{save:"~35 min por reunión",steps:["Termina la reunión y queda la transcripción.","Le pasas la transcripción a tu asistente.","Devuelve resumen, decisiones y tareas con responsable y fecha.","Se vuelca en tu plantilla de acta.","Tú revisas y envías. Nunca sale nada sin tu visto bueno."]},
+ "Presentaciones":{save:"~40 min por deck",steps:["Le das los bullets o el documento de estatus.","Arma la narrativa: portada, agenda, avances, riesgos, próximos pasos.","Rellena tu plantilla corporativa — tu marca intacta.","Tú ajustas el remate y listo."]},
+ "Análisis de datos":{save:"~25 min por análisis",steps:["Subes la hoja de cálculo.","Corre el análisis y genera los gráficos.","Redacta el resumen ejecutivo para pegar en tu presentación.","Tú validas los números contra la fuente."]},
+ "Triage de correo":{save:"~20 min al día",steps:["Clasifica la bandeja por urgencia e intención.","Propone borradores por categoría.","Tú apruebas. Nada se envía automáticamente."]},
+ "Investigación":{save:"~30 min por tema",steps:["Defines la pregunta concreta.","Deep Research barre fuentes y las cita.","Consolida en un brief con las fuentes a la vista.","Tú verificas las citas clave antes de usarlo con un cliente."]},
+ "Informes":{save:"~45 min por informe",steps:["Reúne los datos y la investigación previa.","Redacta con tu estructura y tu tono.","Entrega en tu formato habitual."]},
+ "Propuestas":{save:"~50 min por propuesta",steps:["Parte de tu propuesta ganadora anterior como molde.","Adapta alcance, precio y lenguaje al cliente nuevo.","Marca los supuestos que debes confirmar.","Tú decides el precio final — eso no se delega."]},
+ "Contenido":{save:"~30 min por lote",steps:["Toma una idea o un entregable que ya hiciste.","Lo convierte en publicaciones con tu voz.","Tú eliges cuáles publicar."]},
+ "Material formativo":{save:"~60 min por sesión",steps:["Le das el temario y tus fuentes.","Genera guion, ejercicios y evaluación.","Un audio o mapa mental te sirve de repaso para los participantes.","Tú pruebas el ejercicio antes de llevarlo a clase."]}
+};
+const DEFAULT_FLOWS=["Actas de reunión","Presentaciones","Investigación"];
+function genericFlow(t){return{save:"a medir en 1 semana",steps:[
+ "<b>Disparador:</b> define qué evento arranca la tarea.",
+ "<b>Insumo:</b> reúne la fuente — archivo, correo o lo que pegues en el chat.",
+ "<b>Criterio:</b> le enseñas una sola vez tu estructura y tu tono.",
+ "<b>Salida:</b> el entregable en tu formato de siempre.",
+ "<b>Tú apruebas.</b> El flujo propone, tú decides."]};}
+function allTasks(){const a=[...(state.tareas||[]),...(state.custom||[])];return a.length?a:DEFAULT_FLOWS;}
+
+/* ---------- MOTOR ---------- */
+function engine(){
+  const m=state.membresias||[], has=x=>m.includes(x);
+  const pres=+state.presupuesto||0, mad=+state.madurez||1;
+  const google=state.ecosistema==='Google Workspace'||state.ecosistema==='Gmail personal'||state.ecosistema==='Mixto';
+  const conf=(document.getElementById('q_conf').value||'');
+  const estricto=conf.indexOf('estricto')>=0;
+  const stack={ya:[],gratis:[],sugerido:[],cuidado:[]};
+  let ruta,verdict;
+
+  /* --- ruta --- */
+  if(has('Claude Pro/Max')){
+    ruta="Exprimir lo que ya pagas · Claude";
+    verdict="Ya pagas Claude y probablemente lo estás usando como un chat caro. <b>Cowork y los Proyectos ya están incluidos en tu plan</b> — ahí está el 80% del valor que no estás cobrando. No compres nada más este mes.";
+    stack.ya.push(T.cowork,T.proyectos,T.excel);
+  } else if(has('Google AI Plus/Pro/Ultra')){
+    ruta="Exprimir lo que ya pagas · Google";
+    verdict="Ya pagas Google AI. Antes de sumar otra suscripción: <b>los Gems y NotebookLM ya están en tu plan</b> y son justo la pieza que la mayoría no monta. Empieza por ahí.";
+    stack.ya.push(T.gems,T.notebook,T.geminidocs);
+  } else if(has('ChatGPT Plus/Pro')||has('Perplexity Pro/Max')||has('Copilot M365')){
+    ruta="Consolidar antes de sumar";
+    verdict="Ya pagas al menos una IA. <b>El error caro es acumular suscripciones</b> antes de exprimir la primera. Este plan usa lo que tienes y solo completa el hueco real con herramientas gratis.";
+    if(has('Copilot M365')) stack.ya.push(T.copilot);
+  } else if(pres===0){
+    ruta="Ruta gratis · sin gastar un peso";
+    verdict="Sin presupuesto también se arma un ecosistema serio. <b>Gemini, Gems y NotebookLM son gratis hoy</b> y cubren investigación, asistentes a medida y trabajo sobre tus propios documentos. Empieza aquí y decide después si algo merece tu dinero.";
+  } else {
+    ruta="Arranque recomendado";
+    verdict="Empiezas de cero con presupuesto. <b>Monta primero lo gratis durante 30 días.</b> Si al final del mes topas los límites, ahí sí pagas — y ya sabrás exactamente por qué.";
+  }
+
+  /* --- gratis, siempre la base --- */
+  if(!has('Claude Pro/Max')) stack.gratis.push(T.claudefree);
+  stack.gratis.push(T.gemini);
+  if(!has('Google AI Plus/Pro/Ultra')){stack.gratis.push(T.gems,T.notebook);}
+  if(!has('Perplexity Pro/Max')) stack.gratis.push(T.perplexity);
+
+  /* --- sugerido según presupuesto y madurez --- */
+  if(!has('Claude Pro/Max')&&pres>=20&&mad>=3)
+    stack.sugerido.push(Object.assign({},T.cowork,{c:"Claude Pro · US$17/mes anual",why:"Tu nivel ya justifica automatizar de punta a punta. Cowork es la pieza que hace eso."}));
+  if(google&&state.ecosistema==='Gmail personal'&&pres>=5&&pres<20)
+    stack.sugerido.push(Object.assign({},T.geminidocs,{why:"Es lo más barato que cambia tu día: la IA deja de estar en otra pestaña y entra a tu correo."}));
+  if(state.ecosistema==='Google Workspace'&&!has('Google Workspace'))
+    stack.sugerido.push(Object.assign({},T.workspace,{why:"Si ya pagas Workspace, revisa tu edición: en Business Standard la IA ya viene incluida y quizá no lo sabes."}));
+  if(!has('Perplexity Pro/Max')&&pres>=60&&(state.tareas||[]).includes('Investigación'))
+    stack.sugerido.push(Object.assign({},T.perplexitypro,{why:"Investigas de forma constante y tu presupuesto lo aguanta."}));
+  if(has('Google AI Plus/Pro/Ultra')===false&&pres>=60&&(state.ya_hecho||[]).includes('NotebookLM'))
+    stack.sugerido.push(Object.assign({},T.notebookpro,{why:"Ya usas NotebookLM: el salto a 300 fuentes es real para ti, no teórico."}));
+
+  /* --- con reserva --- */
+  if(!estricto) stack.cuidado.push(Object.assign({},T.glm,{why:"Gratis y potente, pero opera bajo jurisdicción china/singapurense. Úsalo para trabajo genérico — jamás con datos de tus clientes."}));
+  else stack.cuidado.push(Object.assign({},T.glm,{why:"Marcaste confidencialidad estricta: <b>no la uses</b> con material de clientes. La dejo listada solo para trabajo público."}));
+  if(pres===0) stack.cuidado.push(Object.assign({},T.otras,{why:"Tu red de seguridad cuando topes los límites diarios de las gratis."}));
+
+  /* --- nivel --- */
+  const niveles={1:"Explorador",2:"Usuario",3:"Configurador",4:"Integrador",5:"Orquestador"};
+  return {ruta,verdict,stack,nivel:niveles[mad]||"Explorador",score:Math.min(100,mad*15+(state.ya_hecho||[]).filter(x=>x!=='Nada de esto').length*5)};
+}
+
+/* ---------- render ---------- */
+function nodeHTML(x){return `<div class="node"><div class="nt">${x.e} ${x.t}</div><div class="nd">${x.d}</div>${x.why?`<div class="nd why">▸ ${x.why}</div>`:''}<span class="badge nativo">${x.c}</span></div>`;}
+function renderStack(r){
+  const L=[["ya","Ya lo pagas — empieza aquí","orch"],["gratis","Gratis y suficiente","data"],["sugerido","Vale tu dinero (solo si aplica)","exec"],["cuidado","Con reserva","warn"]];
+  const c=document.getElementById('stackContainer');c.innerHTML='';
+  L.forEach(([k,label,cls])=>{const arr=r.stack[k];if(!arr||!arr.length)return;
+    c.insertAdjacentHTML('beforeend',`<div class="layer ${cls}"><div class="lname">${label}</div><div class="nodes">${arr.map(nodeHTML).join('')}</div></div>`);});
+}
+function renderFlows(){
+  const chosen=allTasks(),c=document.getElementById('flowContainer');c.innerHTML='';
+  chosen.forEach((t,i)=>{const f=FLOWS[t]||genericFlow(t);const d=document.createElement('details');d.className='flowcard';if(i===0)d.open=true;
+    d.innerHTML=`<summary><span class="fnum">${String(i+1).padStart(2,'0')}</span>${t}<span class="save">${f.save}</span></summary><div class="flowsteps"><ol>${f.steps.map(s=>`<li>${s}</li>`).join('')}</ol></div>`;
+    c.appendChild(d);});
+}
+function renderPlan(r){
+  const dolor=document.getElementById('q_dolor').value.trim()||allTasks()[0];
+  const frenos=state.frenos||[];
+  const sem=[
+    {n:"Semana 1",t:`Solo “${dolor}”`,d:"Monta ese único flujo. Úsalo todos los días aunque el resultado no sea perfecto. Anota cuánto te tomaba antes y cuánto ahora."},
+    {n:"Semana 2",t:"Guarda el criterio",d:"Lo que corregiste a mano en la semana 1 conviértelo en instrucción fija — en un Proyecto, un Gem o un asistente. Deja de repetirte."},
+    {n:"Semana 3",t:"Mete tus plantillas",d:"Sube tus formatos reales. Aquí es donde el resultado deja de parecer genérico y empieza a parecer tuyo."},
+    {n:"Semana 4",t:"Abre el segundo flujo",d:"Solo ahora. Si el primero no quedó firme, repite la semana 3 en vez de avanzar."}
+  ];
+  if(frenos.includes('Se me olvida')) sem[0].d+=" Ponte un recordatorio diario a la misma hora — tu freno declarado es el olvido, no la herramienta.";
+  if(frenos.includes('Falta de tiempo')) sem[0].d+=" Bloquea 20 minutos en tu calendario, no más. Tu freno es el tiempo: un plan largo lo garantiza muerto.";
+  if(frenos.includes('Desconfianza del resultado')) sem[1].d+=" Contrasta cada salida contra un caso que ya conoces bien. La confianza se construye verificando, no creyendo.";
+  document.getElementById('planContainer').innerHTML=sem.map(s=>
+    `<div class="weekcard"><div class="wn">${s.n}</div><div><div class="wt">${s.t}</div><div class="wd">${s.d}</div></div></div>`).join('');
+}
+let LAST=null;
+function buildProfile(){
+  const sel=document.getElementById('q_time');
+  const hrs=parseFloat(sel.options[sel.selectedIndex].dataset.h||'1.2');
+  state.custom=(document.getElementById('q_tasks_free').value||'').split(/\n|,|;/).map(x=>x.trim()).filter(x=>x.length>2).slice(0,6);
+  const r=engine();LAST={r,hrs};
+  document.getElementById('verdict').innerHTML=r.verdict;
+  document.getElementById('rutaLead').innerHTML='Ruta: <b>'+r.ruta+'</b> · Nivel: <b>'+r.nivel+'</b>';
+  renderStack(r);renderFlows();renderPlan(r);
+  const rows=[['Rol',val('q_role')||'—'],['Sector',val('q_sector')||'—'],['Equipo',state.equipo],
+    ['Ya pagas',(state.membresias.length?state.membresias.join(', '):'Nada todavía')],
+    ['Nivel',r.nivel+' ('+state.madurez+'/5)'],['Ecosistema',state.ecosistema],
+    ['Tareas',allTasks().join(', ')],['Tiempo al día',sel.value],['Presupuesto','US$'+state.presupuesto+'/mes']];
+  document.getElementById('profileRows').innerHTML=rows.map(x=>`<div class="row"><span>${x[0]}</span><span>${x[1]}</span></div>`).join('');
+  document.getElementById('profileCard').style.display='block';
+  document.getElementById('mHours').textContent=hrs.toFixed(1)+'h';
+  document.getElementById('mLevel').textContent=r.nivel;
+  document.getElementById('mFlows').textContent=allTasks().length;
+  const paga=state.membresias.filter(x=>x!=='Ninguna').length;
+  document.getElementById('mCost').textContent=paga?'Ya pagado':(+state.presupuesto===0?'US$0':'US$'+state.presupuesto);
+}
+function val(id){return (document.getElementById(id).value||'').trim();}
+
+/* ---------- guardar ---------- */
+async function saveDiag(){
+  const b=document.getElementById('btnSave'),msg=document.getElementById('saveMsg');
+  if(!LAST) buildProfile();
+  if(!val('q_nombre')||!val('q_email')){msg.innerHTML='<b style="color:var(--orange)">Falta tu nombre o tu correo</b> — están en el primer bloque.';go(1);return;}
+  b.disabled=true;b.textContent='Enviando…';
+  const sel=document.getElementById('q_time');
+  const payload={
+    origen:'arquitecto-ecosistema',
+    nombre:val('q_nombre'),email:val('q_email'),rol:val('q_role'),sector:val('q_sector'),equipo:state.equipo,
+    membresias:state.membresias,antiguedad:document.getElementById('q_antiguedad').value,
+    frecuencia:document.getElementById('q_frecuencia').value,madurez:+state.madurez,
+    ya_hecho:state.ya_hecho,ecosistema:state.ecosistema,frenos:state.frenos,
+    tareas:state.tareas,tareas_libres:state.custom,tiempo:sel.value,horas:LAST.hrs,
+    dolor:val('q_dolor'),entregables:state.entregables,
+    plantillas:document.getElementById('q_plantillas').value,
+    confidencialidad:document.getElementById('q_conf').value,
+    presupuesto:'US$'+state.presupuesto,meta_2h:val('q_goal'),
+    nivel:LAST.r.nivel,ruta:LAST.r.ruta,score:LAST.r.score,
+    stack:[].concat(LAST.r.stack.ya,LAST.r.stack.gratis,LAST.r.stack.sugerido).map(x=>x.t),
+    meta:{acompanamiento:state.acompanamiento,ua:navigator.userAgent.slice(0,120),ts:new Date().toISOString()}
+  };
+  try{
+    const res=await fetch(SB_URL+'/rest/v1/'+SB_TABLE,{method:'POST',
+      headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY,"Content-Type":"application/json","Prefer":"return=minimal"},
+      body:JSON.stringify(payload)});
+    if(!res.ok) throw new Error(res.status+' '+await res.text());
+    document.getElementById('saveBox').classList.add('ok');
+    msg.innerHTML='<b style="color:var(--cyan)">✓ Listo, '+payload.nombre.split(' ')[0]+'.</b> Tu diagnóstico quedó registrado. Te llegará el plan a '+payload.email+'.';
+    b.textContent='Enviado ✓';
+  }catch(e){
+    b.disabled=false;b.textContent='Reintentar';
+    msg.innerHTML='<b style="color:var(--orange)">No se pudo enviar.</b> Revisa tu conexión e inténtalo otra vez. ('+String(e.message).slice(0,60)+')';
+  }
+}
 </script>
+
 </body>
 </html>
