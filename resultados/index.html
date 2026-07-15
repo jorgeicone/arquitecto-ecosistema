@@ -208,7 +208,7 @@
 <section class="hero" style="padding:34px 0 24px">
   <div class="eyebrow">Resultados públicos</div>
   <h1 style="font-size:clamp(2rem,5vw,3.2rem)">Cómo está la <em>madurez en IA</em></h1>
-  <p>Datos agregados de quienes hicieron el diagnóstico. Sin nombres, sin correos, sin datos personales — solo el patrón.</p>
+  <p>Herramienta abierta y anónima. Nunca pedimos nombre ni correo: lo que ves es el patrón real de quienes la usaron.</p>
   <div class="cta noprint"><button class="btn btn-primary" onclick="share()">Compartir enlace</button>
   <button class="btn btn-ghost" onclick="window.print()">Imprimir</button></div>
 </section>
@@ -231,13 +231,15 @@
     <div class="bars" id="bFre"></div>
     <h4 style="font-family:'JetBrains Mono';font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);margin:26px 0 14px">Tareas que más quieren delegar</h4>
     <div class="bars" id="bTar"></div>
+    <h4 style="font-family:'JetBrains Mono';font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);margin:26px 0 14px">Qué les preocupa de usar IA</h4>
+    <div class="bars" id="bPre"></div>
     <h4 style="font-family:'JetBrains Mono';font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);margin:26px 0 14px">Sectores</h4>
     <div class="bars" id="bSec"></div>
   </div></div>
   <div class="note" style="border-left-color:var(--cyan)"><b style="color:var(--cyan)">Cómo leer esto:</b> el dato que más importa no es cuánta gente usa IA, sino <b>cuántos ya pagan una membresía que no están exprimiendo</b>. Ahí está el desperdicio — y la oportunidad.</div>
 </div>
 <footer><div class="legal"><b>© 2026 Jorge Hugo Pérez Gaona · ICONE ialabs.</b><br>
-Datos agregados y anónimos del diagnóstico "Arquitecto de Ecosistema de Productividad". Ningún dato personal se publica en esta página.</div>
+Herramienta académica de uso libre. El diagnóstico "Arquitecto de Ecosistema de Productividad" no recoge nombre, correo ni ningún dato identificable — ni en esta página ni en la base de datos.</div>
 <div class="sig">— ICONE ialabs · diseñado con intención</div></footer></div>
 <script>const SB_URL="https://nvgkhdrrxqdgxktfkioa.supabase.co";const SB_KEY="sb_publishable_d1RrtE7S-9a8e8mGKRRjxQ_4HU_nkDl";
 const esc=s=>String(s==null?'':s).replace(/[<>&"]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]));
@@ -262,7 +264,7 @@ function share(){const u=location.href;if(navigator.share){navigator.share({titl
   document.getElementById('insight').innerHTML=`De ${d.total} diagnósticos, <b style="color:var(--cyan)">${pct}% ya paga al menos una IA</b> y la madurez promedio es <b style="color:var(--cyan)">${d.madurez_prom||0} de 5</b> — es decir, la mayoría paga herramientas de nivel 5 y las usa a nivel ${Math.round(d.madurez_prom||1)}. El problema no es la herramienta.`;
   const nv={'Explorador':0,'Usuario':0,'Configurador':0,'Integrador':0,'Orquestador':0};
   Object.entries(d.niveles||{}).forEach(([k,v])=>{nv[k]=v});
-  bars('bNiv',nv);bars('bMem',mem);bars('bFre',d.frenos);bars('bTar',d.tareas);bars('bSec',d.sectores);
+  bars('bNiv',nv);bars('bMem',mem);bars('bFre',d.frenos);bars('bTar',d.tareas);bars('bPre',d.preocupaciones);bars('bSec',d.sectores);
  }catch(e){document.getElementById('empty').style.display='block';}
 })();
 </script></body></html>
