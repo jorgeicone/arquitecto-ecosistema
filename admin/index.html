@@ -202,7 +202,7 @@
  @media print{.bg,.noprint{display:none!important}}
 </style></head><body><div class="bg"><div class="glow g1"></div><div class="glow g2"></div><div class="glow g3"></div><div class="grid-overlay"></div></div>
 <div class="wrap">
-<div class="topbar"><div class="logo"><div class="wordmark"><b>ICONE</b> ialabs<span class="sub">panel privado</span></div></div>
+<div class="topbar"><div class="logo"><div class="wordmark"><b>ICONE</b> ialabs<span class="sub">panel · datos anónimos</span></div></div>
 <div class="credit noprint">arquitecto · <b id="cnt">—</b> diagnósticos</div></div>
 <div id="gate" class="gate console" style="padding:34px">
   <h2 style="font-size:1.4rem;margin-bottom:8px">Panel privado</h2>
@@ -214,7 +214,7 @@
 <div id="app" style="display:none">
   <div class="kpis">
     <div class="metric"><div class="mv" id="k1">—</div><div class="ml">Diagnósticos</div></div>
-    <div class="metric"><div class="mv" id="k2">—</div><div class="ml">Quieren acompañamiento</div></div>
+    <div class="metric"><div class="mv" id="k2">—</div><div class="ml">Ya paga alguna IA</div></div>
     <div class="metric"><div class="mv" id="k3">—</div><div class="ml">Horas/día en juego</div></div>
     <div class="metric"><div class="mv" id="k4">—</div><div class="ml">Madurez promedio</div></div>
   </div>
@@ -225,6 +225,10 @@
     <div class="bars" id="bFre"></div>
     <h4 style="font-family:'JetBrains Mono';font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);margin:26px 0 14px">Tareas que más quieren delegar</h4>
     <div class="bars" id="bTar"></div>
+    <h4 style="font-family:'JetBrains Mono';font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);margin:26px 0 14px">Qué les preocupa de usar IA</h4>
+    <div class="bars" id="bPre"></div>
+    <h4 style="font-family:'JetBrains Mono';font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);margin:26px 0 14px">Formación previa en IA</h4>
+    <div class="bars" id="bFor"></div>
   </div></div>
   <div class="console"><div class="console-body">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;gap:12px;flex-wrap:wrap">
@@ -232,7 +236,7 @@
       <div class="noprint" style="display:flex;gap:8px"><button class="btn btn-ghost" style="padding:8px 16px;font-size:.78rem" onclick="csv()">Descargar CSV</button>
       <button class="btn btn-ghost" style="padding:8px 16px;font-size:.78rem" onclick="load()">↻ Actualizar</button></div>
     </div>
-    <div class="tw"><table><thead><tr><th>Fecha</th><th>Quién</th><th>Contacto</th><th>Nivel</th><th>Ruta</th><th>Ya paga</th><th>Dolor · tiempo</th><th>Presup.</th><th></th></tr></thead><tbody id="tb"></tbody></table></div>
+    <div class="tw"><table><thead><tr><th>Fecha</th><th>Perfil</th><th>Nivel</th><th>Ruta</th><th>Formación</th><th>Ya paga</th><th>Dolor · tiempo</th><th>Presup.</th><th></th></tr></thead><tbody id="tb"></tbody></table></div>
   </div></div>
 </div>
 <footer><div class="sig">— ICONE ialabs · panel privado</div></footer></div>
@@ -252,18 +256,19 @@ function bars(el,counts){const e=document.getElementById(el);const arr=Object.en
 function tally(field){const c={};D.forEach(r=>(r[field]||[]).forEach(x=>c[x]=(c[x]||0)+1));return c;}
 function render(){
   const n=D.length;document.getElementById('cnt').textContent=n;document.getElementById('k1').textContent=n;
-  document.getElementById('k2').textContent=D.filter(r=>r.meta&&r.meta.acompanamiento&&r.meta.acompanamiento.indexOf('Sí')===0).length;
+  const pagan=D.filter(r=>(r.membresias||[]).some(x=>x!=='Ninguna')).length;
+  document.getElementById('k2').textContent=n?Math.round(pagan/n*100)+'%':'—';
   document.getElementById('k3').textContent=n?(D.reduce((a,r)=>a+(+r.horas||0),0)).toFixed(1)+'h':'—';
   document.getElementById('k4').textContent=n?(D.reduce((a,r)=>a+(+r.madurez||0),0)/n).toFixed(1)+'/5':'—';
-  bars('bMem',tally('membresias'));bars('bFre',tally('frenos'));bars('bTar',tally('tareas'));
+  bars('bMem',tally('membresias'));bars('bFre',tally('frenos'));bars('bTar',tally('tareas'));bars('bPre',tally('preocupaciones'));
+  const f={};D.forEach(r=>{const k=r.formacion||'—';f[k]=(f[k]||0)+1});bars('bFor',f);
   document.getElementById('tb').innerHTML=n?D.map(r=>{
-    const quiere=r.meta&&r.meta.acompanamiento&&r.meta.acompanamiento.indexOf('Sí')===0;
     return `<tr>
     <td style="white-space:nowrap;color:var(--text-dim)">${new Date(r.created_at).toLocaleDateString('es-CO',{day:'2-digit',month:'short'})}</td>
-    <td><b>${esc(r.nombre)}</b>${quiere?'<span class="pill o">quiere contacto</span>':''}<div style="color:var(--text-dim);font-size:.74rem;margin-top:3px">${esc(r.rol)} · ${esc(r.sector)}</div></td>
-    <td style="font-size:.74rem"><a href="mailto:${esc(r.email)}" style="color:var(--cyan);text-decoration:none">${esc(r.email)}</a></td>
+    <td><b>${esc(r.rol)||'—'}</b><div style="color:var(--text-dim);font-size:.74rem;margin-top:3px">${esc(r.sector)} · ${esc(r.equipo)}</div></td>
     <td><span class="pill">${esc(r.nivel)}</span><div style="color:var(--text-dim);font-size:.72rem;margin-top:3px">${esc(r.madurez)}/5</div></td>
     <td style="font-size:.74rem;color:var(--text-dim);max-width:150px">${esc(r.ruta)}</td>
+    <td style="font-size:.74rem;color:var(--text-dim)">${esc(r.formacion)||'—'}</td>
     <td style="max-width:140px">${(r.membresias||[]).map(m=>`<span class="pill">${esc(m)}</span>`).join('')||'<span style="color:var(--text-dim)">—</span>'}</td>
     <td style="max-width:180px;font-size:.76rem">${esc(r.dolor)||'—'}<div style="color:var(--text-dim);font-size:.72rem;margin-top:3px">${esc(r.tiempo)}</div></td>
     <td style="font-size:.76rem;color:var(--cyan)">${esc(r.presupuesto)}</td>
@@ -271,10 +276,10 @@ function render(){
 }
 async function del(id){if(!confirm('¿Borrar este diagnóstico? No se puede deshacer.'))return;await rpc('delete_diagnostico_eco',{pass:PASS,rid:id});load();}
 function csv(){
-  const cols=['created_at','nombre','email','rol','sector','equipo','nivel','madurez','ruta','antiguedad','frecuencia','ecosistema','tiempo','horas','dolor','plantillas','confidencialidad','presupuesto','meta_2h'];
+  const cols=['created_at','rol','sector','equipo','nivel','madurez','ruta','formacion','antiguedad','frecuencia','ecosistema','tiempo','horas','dolor','plantillas','confidencialidad','presupuesto','meta_2h'];
   const q=v=>'"'+String(v==null?'':v).replace(/"/g,'""')+'"';
-  const rows=[cols.concat(['membresias','ya_hecho','frenos','tareas','entregables','acompanamiento']).join(',')];
-  D.forEach(r=>rows.push(cols.map(c=>q(r[c])).concat([q((r.membresias||[]).join(' | ')),q((r.ya_hecho||[]).join(' | ')),q((r.frenos||[]).join(' | ')),q([].concat(r.tareas||[],r.tareas_libres||[]).join(' | ')),q((r.entregables||[]).join(' | ')),q(r.meta&&r.meta.acompanamiento)]).join(',')));
+  const rows=[cols.concat(['membresias','ya_hecho','frenos','preocupaciones','tareas','entregables']).join(',')];
+  D.forEach(r=>rows.push(cols.map(c=>q(r[c])).concat([q((r.membresias||[]).join(' | ')),q((r.ya_hecho||[]).join(' | ')),q((r.frenos||[]).join(' | ')),q((r.preocupaciones||[]).join(' | ')),q([].concat(r.tareas||[],r.tareas_libres||[]).join(' | ')),q((r.entregables||[]).join(' | '))]).join(',')));
   const b=new Blob(["\ufeff"+rows.join('\n')],{type:'text/csv;charset=utf-8'});
   const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='diagnosticos-ecosistema-'+new Date().toISOString().slice(0,10)+'.csv';a.click();
 }
