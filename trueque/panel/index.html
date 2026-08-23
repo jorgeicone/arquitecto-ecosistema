@@ -1,0 +1,788 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Panel Trueque · ICONEialabs</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#050d1f">
+<link rel="icon" href="data:image/webp;base64,UklGRrgFAABXRUJQVlA4WAoAAAAQAAAAVwAAVwAAQUxQSGgBAAABgFtt2/Lk+b/vJJNIZZ3Ng9sWMWwDh028Jz3Su8snT/GH6NMTEQzbto1kNb0nG1gboB9jgUxj7eDy7sVHTpzoX+4uD9YaGcAaDMYClVbvnVPmvdeqAHZgDPL76R/vQ5xWYvA+/bGfx4DXxGDhnnSDdtNbOfJ+ASb5O9ukj5QgenIbJumfLbpAGYLjVt+xmKWjEtFxFhYmKTyGSK0THgqJsTimpxieR7AofadPtcd3EWjRUQ7HFrI9Br0E9rK1T0a9RH7WVugpiOfKrmp2T9KN4uLkJt0oLm5eKMrLr2p+o2pkh//RI5soO7r9j25fJduvXev2gbr9pW7fWv3Q7Ic/qtkrzT77Koumav+O4peiL/gqwuJI1G+YJP8g6GNyiYHFDJ3UiY4zsEBisKHmuzYGiLRNLT+3OVD8zSn5xLm/A8Agt/em4T/f9nIww3xtuanga5vlAb52sF+uLe+eTc8vn+4s1wb6ZQBWUDggKgQAANAWAJ0BKlgAWAA+SSCORKKiIRR8BOwoBISgDHZDmU8ZVTJsl6oPuA3+/mK6AHoAf2vqSfQz6ULyjHlS8U7CmiAJH4bcCAqXMD4QI7Env+M8puembNo7sQTgAEi0jltQuxruK+1iXbDHlDMmzaY4SXbMpt+FAtSdz/gfnwh39Yc/f5DQW6ifghI1oHpc6ZkumLGRB6G+o46fNUAlzX1ROkuBiEDBuoTddYGSxAXIYAB7uUL/xc82dgGFsaB7ImFwAP75XOZTqFmhXu5qrzvVIV1ky1rpglcsNir3AyxLUP0uRLgF+Dmhqv1Dkv2EM3+4l4ymb/TWtXlyhn/TPpCVixiIFjrr23fA71Cb9OQo571yrvgzv0Dv122w3O6SOPc3bxREMfjzf9H/YT5TPXsNPxL7T6rhtPXWUO5+4Oez5dbEffO6KMepFinmddE2HdjYXv14gD3scCt94awcr/GzKHIxhnW9UVc6VRIe3kaQFMx4c8psdIcRvqlTMqft/tOZePJ+a2loOZl8TXUbtg9zAl5OJp0QrESHPjcBkSSucemyiQhMvrdFoeYXNyp7lP6DFLJff4jCK8rZOS4rZ/w0r5a+biA89y9BhXny5L/m0KzmdChvODDIB4U/a/x6XltMgrGpPeSL1N9k3NwtXkS8AUtXmRbplx5kjr3soNVmNCVSxsETLkHzHyz/aEqbjNGfzul1lp6csUgyNKtjMJE/K4ohbs/NaNtJcGrpM+ciV97yz82x3p3hRcc+ZI3Me2H+Af9v8y5dz84PHyrneKeMgsMfrxq48BibIr7Iq24K4sNFal8mMay1/+XH//Gw54nOeOrBhRhCAu4TpU/eUJmmcoChT8u79KFhwz9vdn12fMnQsybrGeuVJJetjZSwbmnwIHXb0cby5lPxEBmaX74RvMcP14kIzeSx2nI94scOJFCzfLaFNhL9KNlnakNIJ4EFB/iDcFGsVrP+hi6NqPcUuCifV9h4pzFEC1NTMO96qIKOgTty2UTSEEUzNgMuc9pPssxdawPeNPM8M939OtM9N9Oyiyw/QH6RXZIh/cuUzYJTb7cdz0Ta+bg/XV0p0TS7ucK2aU2y3QagmRycUHVD+hec+/gfZO9qmbku1NsWBGmT8Yv8oh+5WLmD2hS/faSLHbDIy+2eAViVVFLGL7g9gW2JDlttWd/KXTXhTG5GDJKfUvvkjO/IPCr11ynuXGtw9hf7vyeSfnzcttFJnZWDPhH/ubGFbWOwuImYjVHQVE1fvWDp7L7YbR3T5N/QONdXfMEVcFjORuidEt2SZ+fHU+8LgSTAKWIdIskrszVvaMt5BzOy4aniSpkHS6Reo6pf6JWqj67vgPA9iY1rFQ1nToySvVCt8A5rSEgrZzbWA+DHv2zTosH05XXG9QFbPRSb4KvF1Z7C+NHgAAA=">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#050d1f; --navy-2:#0a1730; --navy-3:#0e1e3d;
+  --cyan:#00d4ff; --purple:#7b2fff; --orange:#ff8c00;
+  --white:#ffffff; --muted:#9fb0c9; --dim:#7d8fa8;
+  --line:rgba(159,176,201,.16); --danger:#ff6b6b; --ok:#4ade80;
+  --r-card:14px; --r-pill:999px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--navy);color:var(--white);
+  font-family:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;
+  font-size:15px;line-height:1.55;min-height:100dvh;-webkit-font-smoothing:antialiased;
+}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.lg{display:block;background-repeat:no-repeat;background-position:center;background-size:contain;flex:none}
+.lg-icon{background-image:url("data:image/webp;base64,UklGRrgFAABXRUJQVlA4WAoAAAAQAAAAVwAAVwAAQUxQSGgBAAABgFtt2/Lk+b/vJJNIZZ3Ng9sWMWwDh028Jz3Su8snT/GH6NMTEQzbto1kNb0nG1gboB9jgUxj7eDy7sVHTpzoX+4uD9YaGcAaDMYClVbvnVPmvdeqAHZgDPL76R/vQ5xWYvA+/bGfx4DXxGDhnnSDdtNbOfJ+ASb5O9ukj5QgenIbJumfLbpAGYLjVt+xmKWjEtFxFhYmKTyGSK0THgqJsTimpxieR7AofadPtcd3EWjRUQ7HFrI9Br0E9rK1T0a9RH7WVugpiOfKrmp2T9KN4uLkJt0oLm5eKMrLr2p+o2pkh//RI5soO7r9j25fJduvXev2gbr9pW7fWv3Q7Ic/qtkrzT77Koumav+O4peiL/gqwuJI1G+YJP8g6GNyiYHFDJ3UiY4zsEBisKHmuzYGiLRNLT+3OVD8zSn5xLm/A8Agt/em4T/f9nIww3xtuanga5vlAb52sF+uLe+eTc8vn+4s1wb6ZQBWUDggKgQAANAWAJ0BKlgAWAA+SSCORKKiIRR8BOwoBISgDHZDmU8ZVTJsl6oPuA3+/mK6AHoAf2vqSfQz6ULyjHlS8U7CmiAJH4bcCAqXMD4QI7Env+M8puembNo7sQTgAEi0jltQuxruK+1iXbDHlDMmzaY4SXbMpt+FAtSdz/gfnwh39Yc/f5DQW6ifghI1oHpc6ZkumLGRB6G+o46fNUAlzX1ROkuBiEDBuoTddYGSxAXIYAB7uUL/xc82dgGFsaB7ImFwAP75XOZTqFmhXu5qrzvVIV1ky1rpglcsNir3AyxLUP0uRLgF+Dmhqv1Dkv2EM3+4l4ymb/TWtXlyhn/TPpCVixiIFjrr23fA71Cb9OQo571yrvgzv0Dv122w3O6SOPc3bxREMfjzf9H/YT5TPXsNPxL7T6rhtPXWUO5+4Oez5dbEffO6KMepFinmddE2HdjYXv14gD3scCt94awcr/GzKHIxhnW9UVc6VRIe3kaQFMx4c8psdIcRvqlTMqft/tOZePJ+a2loOZl8TXUbtg9zAl5OJp0QrESHPjcBkSSucemyiQhMvrdFoeYXNyp7lP6DFLJff4jCK8rZOS4rZ/w0r5a+biA89y9BhXny5L/m0KzmdChvODDIB4U/a/x6XltMgrGpPeSL1N9k3NwtXkS8AUtXmRbplx5kjr3soNVmNCVSxsETLkHzHyz/aEqbjNGfzul1lp6csUgyNKtjMJE/K4ohbs/NaNtJcGrpM+ciV97yz82x3p3hRcc+ZI3Me2H+Af9v8y5dz84PHyrneKeMgsMfrxq48BibIr7Iq24K4sNFal8mMay1/+XH//Gw54nOeOrBhRhCAu4TpU/eUJmmcoChT8u79KFhwz9vdn12fMnQsybrGeuVJJetjZSwbmnwIHXb0cby5lPxEBmaX74RvMcP14kIzeSx2nI94scOJFCzfLaFNhL9KNlnakNIJ4EFB/iDcFGsVrP+hi6NqPcUuCifV9h4pzFEC1NTMO96qIKOgTty2UTSEEUzNgMuc9pPssxdawPeNPM8M939OtM9N9Oyiyw/QH6RXZIh/cuUzYJTb7cdz0Ta+bg/XV0p0TS7ucK2aU2y3QagmRycUHVD+hec+/gfZO9qmbku1NsWBGmT8Yv8oh+5WLmD2hS/faSLHbDIy+2eAViVVFLGL7g9gW2JDlttWd/KXTXhTG5GDJKfUvvkjO/IPCr11ynuXGtw9hf7vyeSfnzcttFJnZWDPhH/ubGFbWOwuImYjVHQVE1fvWDp7L7YbR3T5N/QONdXfMEVcFjORuidEt2SZ+fHU+8LgSTAKWIdIskrszVvaMt5BzOy4aniSpkHS6Reo6pf6JWqj67vgPA9iY1rFQ1nToySvVCt8A5rSEgrZzbWA+DHv2zTosH05XXG9QFbPRSb4KvF1Z7C+NHgAAA=")}
+.wordmark{font-size:15px;font-weight:800;line-height:1;white-space:nowrap;color:#fff}
+.wordmark span{color:var(--cyan);font-weight:500;letter-spacing:.6px;margin-left:1px}
+.wrap{max-width:1140px;margin:0 auto;padding:0 22px}
+
+/* ---------- gate ---------- */
+#gate{min-height:100dvh;display:flex;align-items:center;justify-content:center;padding:22px}
+.gate-box{width:100%;max-width:370px;text-align:center}
+.gate-box .lg-icon{width:60px;height:60px;margin:0 auto 20px}
+.gate-box h1{font-size:23px;font-weight:800;margin-bottom:7px}
+.gate-box p{color:var(--dim);font-size:14px;margin-bottom:24px}
+
+input,select,textarea{
+  width:100%;font-family:inherit;font-size:15px;color:var(--white);
+  background:var(--navy-2);border:1px solid var(--line);border-radius:var(--r-card);
+  padding:12px 14px;transition:border-color .2s var(--ease);
+}
+select{cursor:pointer;appearance:none;padding-right:36px;
+  background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);
+  background-position:calc(100% - 18px) 50%,calc(100% - 13px) 50%;
+  background-size:5px 5px,5px 5px;background-repeat:no-repeat}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,212,255,.15)}
+textarea{min-height:130px;resize:vertical;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.6}
+label{display:block;font-size:12.5px;font-weight:700;margin-bottom:6px}
+.sub{font-size:12.5px;color:var(--dim);margin-bottom:8px;line-height:1.5}
+
+.btn{
+  font-family:inherit;font-size:14.5px;font-weight:700;border:none;cursor:pointer;
+  border-radius:var(--r-pill);padding:12px 24px;background:var(--orange);color:#1a0e00;
+  transition:transform .16s var(--ease),filter .16s var(--ease);white-space:nowrap;
+}
+.btn:hover{filter:brightness(1.08)} .btn:active{transform:scale(.97)}
+.btn[disabled]{opacity:.5;cursor:not-allowed;transform:none;filter:none}
+.btn-line{
+  font-family:inherit;font-size:13.5px;font-weight:700;cursor:pointer;background:none;
+  color:var(--cyan);border:1px solid rgba(0,212,255,.36);border-radius:var(--r-pill);
+  padding:10px 18px;transition:background .18s var(--ease),transform .16s var(--ease);white-space:nowrap;
+}
+.btn-line:hover{background:rgba(0,212,255,.1)} .btn-line:active{transform:scale(.97)}
+.btn-line[disabled]{opacity:.45;cursor:not-allowed}
+.btn-mute{
+  font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;background:none;
+  color:var(--dim);border:1px solid var(--line);border-radius:var(--r-pill);padding:9px 16px;
+  transition:color .18s var(--ease),border-color .18s var(--ease);white-space:nowrap;
+}
+.btn-mute:hover{color:var(--muted);border-color:var(--muted)}
+.btn-danger{color:var(--danger);border-color:rgba(255,107,107,.3)}
+.btn-danger:hover{color:var(--danger);border-color:var(--danger)}
+
+/* ---------- shell ---------- */
+#app{display:none}
+header{position:sticky;top:0;z-index:30;background:rgba(5,13,31,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:11px;height:62px}
+.bar .lg-icon{width:28px;height:28px}
+.tag{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);
+  border:1px solid rgba(0,212,255,.3);border-radius:var(--r-pill);padding:4px 11px}
+.bar-end{margin-left:auto;display:flex;gap:9px;align-items:center}
+
+.toolbar{display:flex;gap:11px;align-items:center;flex-wrap:wrap;padding:20px 0 4px}
+.toolbar select{width:auto;min-width:210px}
+
+/* ---------- KPI tiles ---------- */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;padding:20px 0}
+.kpi{border:1px solid var(--line);border-radius:var(--r-card);padding:15px 16px;background:var(--navy-2)}
+.kpi b{display:block;font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;
+  font-size:29px;font-weight:700;line-height:1.1;letter-spacing:-.02em}
+.kpi span{display:block;font-size:12px;color:var(--dim);margin-top:5px;line-height:1.35}
+
+/* ---------- tabs ---------- */
+.tabs{display:flex;gap:5px;border-bottom:1px solid var(--line);margin-bottom:22px;overflow-x:auto}
+.tab{
+  font-family:inherit;font-size:14px;font-weight:700;background:none;border:none;cursor:pointer;
+  color:var(--dim);padding:12px 15px;border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;
+  transition:color .18s var(--ease),border-color .18s var(--ease);
+}
+.tab:hover{color:var(--muted)}
+.tab.on{color:var(--cyan);border-bottom-color:var(--cyan)}
+.pane{display:none;padding-bottom:60px}
+.pane.on{display:block}
+
+/* ---------- match card ---------- */
+.match{border:1px solid var(--line);border-radius:var(--r-card);background:var(--navy-2);margin-bottom:13px;overflow:hidden}
+.match-top{display:flex;gap:16px;align-items:flex-start;padding:17px 18px}
+.score{text-align:center;flex:none;width:74px}
+.score b{display:block;font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;
+  font-size:31px;font-weight:700;line-height:1;letter-spacing:-.02em}
+.score i{display:block;font-style:normal;font-size:10px;color:var(--dim);letter-spacing:.09em;text-transform:uppercase;margin-top:5px}
+.pair{flex:1;min-width:0}
+.badge{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  border-radius:var(--r-pill);padding:3px 10px;margin-bottom:9px}
+.badge-rec{color:var(--cyan);border:1px solid rgba(0,212,255,.4);background:rgba(0,212,255,.09)}
+.badge-dir{color:var(--muted);border:1px solid var(--line)}
+.names{font-size:16.5px;font-weight:800;line-height:1.35;letter-spacing:-.01em}
+.names em{font-style:normal;color:var(--dim);font-weight:500;margin:0 7px}
+.flow{margin-top:12px;display:grid;gap:9px}
+.flow div{font-size:13.5px;color:var(--muted);line-height:1.55;padding-left:15px;position:relative}
+.flow div::before{content:"";position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(--cyan)}
+.flow div.back::before{background:var(--purple)}
+.flow strong{color:var(--white);font-weight:700}
+.why{padding:14px 18px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted);line-height:1.6}
+.why b{color:var(--white);font-weight:700}
+.next{padding:13px 18px;border-top:1px solid var(--line);font-size:13.5px;color:var(--white);
+  background:rgba(0,212,255,.05);line-height:1.55}
+.next b{color:var(--cyan);font-weight:700}
+.match-foot{display:flex;gap:9px;flex-wrap:wrap;padding:13px 18px;border-top:1px solid var(--line)}
+
+/* ---------- participante ---------- */
+.person{border:1px solid var(--line);border-radius:var(--r-card);background:var(--navy-2);padding:16px 18px;margin-bottom:11px}
+.person-h{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;margin-bottom:11px}
+.person-h b{font-size:16px;font-weight:800;letter-spacing:-.01em}
+.person-h span{font-size:12.5px;color:var(--dim)}
+.person-h .when{margin-left:auto;font-size:11.5px;color:var(--dim)}
+.qa{display:grid;gap:10px;margin-bottom:12px}
+.qa div{font-size:13.5px;line-height:1.55}
+.qa dt{font-size:10.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--cyan);margin-bottom:3px}
+.qa dd{color:var(--muted)}
+.qa div.give dt{color:var(--orange)}
+
+/* ---------- estados ---------- */
+.empty{border:1px dashed var(--line);border-radius:var(--r-card);padding:44px 26px;text-align:center}
+.empty b{display:block;font-size:16.5px;font-weight:800;margin-bottom:8px}
+.empty p{color:var(--dim);font-size:14px;max-width:44ch;margin:0 auto 18px;line-height:1.6}
+.skel{border:1px solid var(--line);border-radius:var(--r-card);height:118px;margin-bottom:11px;
+  background:linear-gradient(100deg,var(--navy-2) 28%,var(--navy-3) 50%,var(--navy-2) 72%);
+  background-size:220% 100%;animation:sh 1.4s linear infinite}
+@keyframes sh{to{background-position:-120% 0}}
+.alert{border-radius:var(--r-card);padding:14px 16px;font-size:13.5px;line-height:1.6;margin-bottom:16px}
+.alert-bad{border:1px solid rgba(255,107,107,.34);background:rgba(255,107,107,.08);color:#ffc4c4}
+.alert-ok{border:1px solid rgba(74,222,128,.3);background:rgba(74,222,128,.07);color:#b7f0cd}
+.alert-note{border:1px solid var(--line);background:var(--navy-2);color:var(--muted)}
+.alert b{font-weight:700}
+
+/* ---------- modal ---------- */
+.veil{position:fixed;inset:0;background:rgba(2,6,16,.8);backdrop-filter:blur(5px);z-index:50;
+  display:none;align-items:center;justify-content:center;padding:22px}
+.veil.on{display:flex}
+.modal{background:var(--navy-2);border:1px solid var(--line);border-radius:18px;
+  width:100%;max-width:540px;max-height:88dvh;overflow-y:auto;padding:26px}
+.modal h2{font-size:19px;font-weight:800;margin-bottom:7px}
+.modal>p{color:var(--dim);font-size:13.5px;margin-bottom:20px;line-height:1.6}
+.modal .field{margin-bottom:17px}
+.modal-foot{display:flex;gap:10px;justify-content:flex-end;margin-top:22px;flex-wrap:wrap}
+.modal a{color:var(--cyan);text-decoration:none;font-weight:700}
+.modal a:hover{text-decoration:underline}
+
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(90px);
+  background:var(--navy-3);border:1px solid rgba(0,212,255,.4);border-radius:var(--r-pill);
+  padding:12px 22px;font-size:14px;z-index:70;opacity:0;pointer-events:none;
+  transition:transform .4s var(--ease),opacity .4s var(--ease);max-width:calc(100vw - 40px);text-align:center}
+.toast.on{transform:translateX(-50%) translateY(0);opacity:1}
+
+.spin{display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:8px;
+  border:2px solid rgba(26,14,0,.3);border-top-color:#1a0e00;border-radius:50%;animation:sp .7s linear infinite}
+.spin.cy{border-color:rgba(0,212,255,.25);border-top-color:var(--cyan)}
+@keyframes sp{to{transform:rotate(360deg)}}
+
+@media (max-width:800px){ .kpis{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:560px){
+  .wrap{padding:0 16px}
+  .match-top{flex-direction:column;gap:12px}
+  .score{width:auto;text-align:left;display:flex;align-items:baseline;gap:9px}
+  .score i{margin-top:0}
+  .toolbar select{width:100%;min-width:0}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ GATE ============ -->
+<div id="gate">
+  <div class="gate-box">
+    <span class="lg lg-icon" role="img" aria-label="ICONEialabs"></span>
+    <h1>Panel Trueque</h1>
+    <p>Tablero interno. Nada de esto es público.</p>
+    <div class="field">
+      <input id="pass" type="password" placeholder="Contraseña" autocomplete="current-password">
+    </div>
+    <p class="alert alert-bad" id="gateErr" style="display:none;margin-top:14px"></p>
+    <div style="margin-top:16px"><button class="btn" id="gateGo" style="width:100%">Entrar</button></div>
+  </div>
+</div>
+
+<!-- ============ APP ============ -->
+<div id="app">
+  <header>
+    <div class="wrap bar">
+      <span class="lg lg-icon" role="img" aria-label="ICONEialabs"></span>
+      <span class="wordmark">ICONE<span>ialabs</span></span>
+      <span class="tag">Trueque</span>
+      <span class="bar-end">
+        <button class="btn-mute" id="openCfg">Ajustes</button>
+        <button class="btn-mute" id="salir">Salir</button>
+      </span>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="toolbar">
+      <select id="com" aria-label="Comunidad"></select>
+      <button class="btn-line" id="recargar">Recargar</button>
+      <button class="btn" id="analizar">Analizar con IA</button>
+      <button class="btn-mute" id="csv">Exportar CSV</button>
+    </div>
+
+    <div id="aviso"></div>
+
+    <div class="kpis">
+      <div class="kpi"><b class="mono" id="kPers">0</b><span>Participantes</span></div>
+      <div class="kpi"><b class="mono" id="kMatch">0</b><span>Conexiones encontradas</span></div>
+      <div class="kpi"><b class="mono" id="kRec">0</b><span>Recíprocas (se resuelven mutuamente)</span></div>
+      <div class="kpi"><b class="mono" id="kHuer">0</b><span>Sin quien les resuelva</span></div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab on" data-pane="pMatch">Conexiones</button>
+      <button class="tab" data-pane="pPers">Participantes</button>
+      <button class="tab" data-pane="pHuer">Vacíos de la comunidad</button>
+    </div>
+
+    <section class="pane on" id="pMatch"></section>
+    <section class="pane" id="pPers"></section>
+    <section class="pane" id="pHuer"></section>
+  </div>
+</div>
+
+<!-- ============ AJUSTES ============ -->
+<div class="veil" id="cfg">
+  <div class="modal">
+    <h2>Cerebro de análisis</h2>
+    <p>El emparejamiento lo hace un modelo de IA que corre desde tu navegador. La clave se guarda solo en este equipo y nunca sale hacia nuestros servidores ni queda en el repositorio.</p>
+    <div class="field">
+      <label for="gk">Clave de Google Gemini</label>
+      <p class="sub">Se obtiene gratis en <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a>. Queda en el almacenamiento local de este navegador.</p>
+      <input id="gk" type="password" placeholder="AIza..." autocomplete="off">
+    </div>
+    <div class="field">
+      <label for="gm">Modelo</label>
+      <select id="gm">
+        <option value="gemini-2.0-flash">gemini-2.0-flash (rápido, gratis)</option>
+        <option value="gemini-2.5-flash">gemini-2.5-flash (razona mejor)</option>
+        <option value="gemini-2.5-pro">gemini-2.5-pro (el más fino, más lento)</option>
+      </select>
+    </div>
+    <p class="alert alert-note">¿Prefieres no usar clave? Usa <b>Copiar prompt</b>, pégalo en Claude o en el chat que uses, y trae la respuesta con <b>Pegar resultado</b>.</p>
+    <div class="modal-foot">
+      <button class="btn-mute" id="copiarPrompt">Copiar prompt</button>
+      <button class="btn-mute" id="pegarRes">Pegar resultado</button>
+      <button class="btn" id="cfgOk">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PEGAR RESULTADO ============ -->
+<div class="veil" id="imp">
+  <div class="modal">
+    <h2>Pegar resultado</h2>
+    <p>Pega aquí el JSON que te devolvió el modelo. Debe traer la lista <b>matches</b> y, si aplica, <b>huerfanos</b>.</p>
+    <div class="field"><textarea id="impTxt" placeholder='{"matches":[...],"huerfanos":[...]}'></textarea></div>
+    <p class="alert alert-bad" id="impErr" style="display:none"></p>
+    <div class="modal-foot">
+      <button class="btn-mute" id="impNo">Cancelar</button>
+      <button class="btn" id="impOk">Cargar</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+"use strict";
+
+var SB_URL = "https://nvgkhdrrxqdgxktfkioa.supabase.co";
+var SB_KEY = "sb_publishable_d1RrtE7S-9a8e8mGKRRjxQ_4HU_nkDl";
+var PASS = "", COM = "", PERSONAS = [], MATCHES = [], HUERFANOS = [];
+
+var $ = function(id){ return document.getElementById(id); };
+function esc(s){
+  return String(s == null ? "" : s)
+    .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+}
+function toast(m){
+  var t = $("toast"); t.textContent = m; t.classList.add("on");
+  setTimeout(function(){ t.classList.remove("on"); }, 2600);
+}
+function rpc(fn, body){
+  return fetch(SB_URL + "/rest/v1/rpc/" + fn, {
+    method:"POST",
+    headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY,"Content-Type":"application/json"},
+    body:JSON.stringify(body||{})
+  }).then(function(r){
+    return r.text().then(function(t){
+      if(!r.ok){
+        var m = t; try{ m = JSON.parse(t).message || t; }catch(e){}
+        throw new Error(m);
+      }
+      try{ return JSON.parse(t); }catch(e){ return t; }
+    });
+  });
+}
+function copiar(txt, msg){
+  if(navigator.clipboard && window.isSecureContext){
+    navigator.clipboard.writeText(txt).then(function(){ toast(msg || "Copiado"); })
+      .catch(function(){ toast("No se pudo copiar"); });
+  } else {
+    var a = document.createElement("textarea");
+    a.value = txt; a.style.position = "fixed"; a.style.opacity = "0";
+    document.body.appendChild(a); a.select();
+    try{ document.execCommand("copy"); toast(msg || "Copiado"); }
+    catch(e){ toast("No se pudo copiar"); }
+    document.body.removeChild(a);
+  }
+}
+function cuando(iso){
+  var d = new Date(iso), h = (Date.now() - d) / 36e5;
+  if(h < 1) return "hace " + Math.max(1, Math.round(h * 60)) + " min";
+  if(h < 24) return "hace " + Math.round(h) + " h";
+  return d.toLocaleDateString("es-CO", {day:"numeric", month:"short"});
+}
+
+/* =================== GATE =================== */
+function entrar(){
+  var p = $("pass").value.trim();
+  if(!p) return;
+  var b = $("gateGo");
+  b.disabled = true; b.innerHTML = '<span class="spin"></span>Entrando';
+  rpc("get_trueque_comunidades", {p_pass: p}).then(function(rows){
+    PASS = p;
+    try{ sessionStorage.setItem("tq_pass", p); }catch(e){}
+    $("gate").style.display = "none";
+    $("app").style.display = "block";
+    pintarComunidades(rows || []);
+  }).catch(function(err){
+    b.disabled = false; b.textContent = "Entrar";
+    var e = $("gateErr");
+    e.style.display = "block";
+    e.textContent = /unauthorized/i.test(err.message)
+      ? "Contraseña incorrecta."
+      : "No pudimos conectar con la base. Revisa tu señal.";
+  });
+}
+$("gateGo").addEventListener("click", entrar);
+$("pass").addEventListener("keydown", function(e){ if(e.key === "Enter") entrar(); });
+$("salir").addEventListener("click", function(){
+  try{ sessionStorage.removeItem("tq_pass"); }catch(e){}
+  location.reload();
+});
+try{
+  var guardada = sessionStorage.getItem("tq_pass");
+  if(guardada){ $("pass").value = guardada; entrar(); }
+}catch(e){}
+
+/* =================== COMUNIDADES =================== */
+function pintarComunidades(rows){
+  var sel = $("com");
+  if(!rows.length){
+    sel.innerHTML = '<option value="">Todavía no hay respuestas</option>';
+    PERSONAS = []; MATCHES = []; HUERFANOS = [];
+    render();
+    return;
+  }
+  sel.innerHTML = rows.map(function(r){
+    return '<option value="' + esc(r.comunidad) + '">' + esc(r.comunidad) +
+           " (" + r.total + ")</option>";
+  }).join("");
+  COM = rows[0].comunidad;
+  sel.value = COM;
+  cargar();
+}
+$("com").addEventListener("change", function(){ COM = this.value; cargar(); });
+$("recargar").addEventListener("click", function(){
+  rpc("get_trueque_comunidades", {p_pass: PASS}).then(pintarComunidades).catch(fallo);
+});
+
+function fallo(err){
+  $("aviso").innerHTML = '<div class="alert alert-bad"><b>No se pudo cargar.</b> ' + esc(err.message) + "</div>";
+}
+
+function cargar(){
+  if(!COM) return;
+  $("pMatch").innerHTML = '<div class="skel"></div><div class="skel"></div>';
+  $("pPers").innerHTML  = '<div class="skel"></div>';
+  $("aviso").innerHTML = "";
+  HUERFANOS = leerHuerfanosGuardados();
+  Promise.all([
+    rpc("get_trueque", {p_pass: PASS, p_comunidad: COM}),
+    rpc("get_trueque_matches", {p_pass: PASS, p_comunidad: COM})
+  ]).then(function(r){
+    PERSONAS = r[0] || [];
+    MATCHES  = r[1] || [];
+    render();
+  }).catch(fallo);
+}
+
+/* =================== RENDER =================== */
+function render(){
+  var rec = MATCHES.filter(function(m){ return m.tipo === "reciproco"; }).length;
+  $("kPers").textContent  = PERSONAS.length;
+  $("kMatch").textContent = MATCHES.length;
+  $("kRec").textContent   = rec;
+  $("kHuer").textContent  = HUERFANOS.length;
+  renderMatches(); renderPersonas(); renderHuerfanos();
+}
+
+function renderMatches(){
+  var c = $("pMatch");
+  if(!MATCHES.length){
+    c.innerHTML = '<div class="empty"><b>Todavía no has corrido el análisis</b>' +
+      '<p>Cuando haya al menos dos participantes, el motor cruza lo que cada uno necesita contra lo que ofrecen los demás y devuelve solo las parejas donde la oferta de uno resuelve de verdad la necesidad del otro.</p>' +
+      '<button class="btn-line" onclick="document.getElementById(\'analizar\').click()">Analizar con IA</button></div>';
+    return;
+  }
+  c.innerHTML = MATCHES.map(function(m){
+    var recip = m.tipo === "reciproco";
+    var h = '<article class="match">';
+    h += '<div class="match-top">';
+    h += '<div class="score"><b class="mono">' + m.score + '</b><i>de 100</i></div>';
+    h += '<div class="pair">';
+    h += '<span class="badge ' + (recip ? "badge-rec" : "badge-dir") + '">' +
+         (recip ? "Recíproco" : "Una vía") + "</span>";
+    h += '<div class="names">' + esc(m.a_nombre) + "<em>y</em>" + esc(m.b_nombre) + "</div>";
+    h += '<div class="flow">';
+    h += "<div><strong>" + esc(m.b_nombre.split(" ")[0]) + "</strong> le resuelve a <strong>" +
+         esc(m.a_nombre.split(" ")[0]) + "</strong>: " + esc(m.b_resuelve_a || "") + "</div>";
+    if(recip && m.a_resuelve_b){
+      h += '<div class="back"><strong>' + esc(m.a_nombre.split(" ")[0]) + "</strong> le resuelve a <strong>" +
+           esc(m.b_nombre.split(" ")[0]) + "</strong>: " + esc(m.a_resuelve_b) + "</div>";
+    }
+    h += "</div></div></div>";
+    if(m.razon)          h += '<div class="why"><b>Por qué.</b> ' + esc(m.razon) + "</div>";
+    if(m.siguiente_paso) h += '<div class="next"><b>Siguiente paso.</b> ' + esc(m.siguiente_paso) + "</div>";
+    h += '<div class="match-foot">';
+    h += '<button class="btn-line" data-intro="' + esc(m.id) + '">Copiar presentación</button>';
+    h += '<button class="btn-mute" data-cont="' + esc(m.id) + '">Copiar contactos</button>';
+    h += "</div></article>";
+    return h;
+  }).join("");
+}
+
+function renderPersonas(){
+  var c = $("pPers");
+  if(!PERSONAS.length){
+    c.innerHTML = '<div class="empty"><b>Nadie ha respondido todavía</b>' +
+      "<p>Comparte el enlace del formulario con la comunidad. En cuanto entre la primera respuesta aparece aquí.</p></div>";
+    return;
+  }
+  c.innerHTML = PERSONAS.map(function(p){
+    var h = '<article class="person">';
+    h += '<div class="person-h"><b>' + esc(p.nombre) + "</b>";
+    h += "<span>" + esc(p.email) + (p.celular ? " · " + esc(p.celular) : "") + "</span>";
+    h += '<span class="when">' + cuando(p.created_at) + "</span></div>";
+    h += '<dl class="qa">';
+    h += "<div><dt>Necesita</dt><dd>" + esc(p.necesito) + "</dd></div>";
+    h += '<div class="give"><dt>Ofrece</dt><dd>' + esc(p.ofrezco) + "</dd></div>";
+    h += "</dl>";
+    h += '<button class="btn-mute btn-danger" data-del="' + esc(p.id) + '">Eliminar</button>';
+    h += "</article>";
+    return h;
+  }).join("");
+}
+
+function renderHuerfanos(){
+  var c = $("pHuer");
+  if(!MATCHES.length && !HUERFANOS.length){
+    c.innerHTML = '<div class="empty"><b>Nada que mostrar aún</b>' +
+      "<p>Después de correr el análisis, aquí quedan las personas a las que nadie de la comunidad puede resolverles lo que pidieron. Es la señal más útil del tablero: dice qué oferta le falta a esta red.</p></div>";
+    return;
+  }
+  if(!HUERFANOS.length){
+    c.innerHTML = '<div class="empty"><b>Todos tienen al menos una conexión</b>' +
+      "<p>En esta ronda la comunidad alcanzó a cubrir todas las necesidades declaradas.</p></div>";
+    return;
+  }
+  c.innerHTML = '<div class="alert alert-note">Estas personas declararon algo que <b>nadie más en la comunidad ofrece</b>. Sirve para dos cosas: saber a quién invitar en la próxima ronda, y decirle a esta persona la verdad en vez de agendarle una reunión inútil.</div>' +
+    HUERFANOS.map(function(h){
+      var p = PERSONAS.filter(function(x){ return x.id === h.id; })[0];
+      if(!p) return "";
+      return '<article class="person"><div class="person-h"><b>' + esc(p.nombre) + "</b>" +
+             "<span>" + esc(p.email) + "</span></div>" +
+             '<dl class="qa"><div><dt>Pidió</dt><dd>' + esc(p.necesito) + "</dd></div></dl>" +
+             '<div class="alert alert-bad" style="margin:0"><b>Falta en la red.</b> ' + esc(h.por_que || "") + "</div></article>";
+    }).join("");
+}
+
+/* clics delegados */
+document.addEventListener("click", function(ev){
+  var t = ev.target;
+  if(t.dataset && t.dataset.del)   return borrar(t.dataset.del);
+  if(t.dataset && t.dataset.intro) return copiarIntro(t.dataset.intro);
+  if(t.dataset && t.dataset.cont)  return copiarContactos(t.dataset.cont);
+});
+function borrar(id){
+  var p = PERSONAS.filter(function(x){ return x.id === id; })[0];
+  if(!confirm("¿Eliminar a " + (p ? p.nombre : "esta persona") + "? No se puede deshacer.")) return;
+  rpc("delete_trueque", {p_pass: PASS, p_id: id}).then(cargar).catch(fallo);
+}
+function copiarIntro(id){
+  var m = MATCHES.filter(function(x){ return x.id === id; })[0];
+  if(!m) return;
+  var t = "Hola " + m.a_nombre.split(" ")[0] + ", te escribo del Trueque de " + COM + ".\n\n" +
+    "Pediste: " + m.a_necesito + "\n\n" +
+    "Te presento a " + m.b_nombre + " (" + m.b_email + (m.b_celular ? " · " + m.b_celular : "") + ").\n" +
+    m.b_nombre.split(" ")[0] + " ofrece: " + m.b_ofrezco + "\n\n" +
+    (m.razon ? "Por qué los cruzamos: " + m.razon + "\n\n" : "") +
+    (m.siguiente_paso ? "Siguiente paso: " + m.siguiente_paso + "\n\n" : "") +
+    (m.tipo === "reciproco" && m.a_resuelve_b
+      ? "Y va en las dos vías: lo que tú ofreces (" + m.a_ofrezco + ") resuelve lo que " +
+        m.b_nombre.split(" ")[0] + " necesita.\n\n" : "") +
+    "Quedo atento,\nJorge Hugo Pérez Gaona\nICONEialabs · www.iconeialabs.com";
+  copiar(t, "Presentación copiada");
+}
+function copiarContactos(id){
+  var m = MATCHES.filter(function(x){ return x.id === id; })[0];
+  if(!m) return;
+  copiar(m.a_nombre + " <" + m.a_email + ">" + (m.a_celular ? " " + m.a_celular : "") + "\n" +
+         m.b_nombre + " <" + m.b_email + ">" + (m.b_celular ? " " + m.b_celular : ""), "Contactos copiados");
+}
+
+/* tabs */
+document.querySelectorAll(".tab").forEach(function(b){
+  b.addEventListener("click", function(){
+    document.querySelectorAll(".tab").forEach(function(x){ x.classList.remove("on"); });
+    document.querySelectorAll(".pane").forEach(function(x){ x.classList.remove("on"); });
+    b.classList.add("on");
+    $(b.dataset.pane).classList.add("on");
+  });
+});
+
+/* =================== AJUSTES =================== */
+function leerCfg(){
+  try{
+    return {
+      key:   localStorage.getItem("tq_gemini_key") || "",
+      model: localStorage.getItem("tq_gemini_model") || "gemini-2.0-flash"
+    };
+  }catch(e){ return {key:"", model:"gemini-2.0-flash"}; }
+}
+$("openCfg").addEventListener("click", function(){
+  var c = leerCfg();
+  $("gk").value = c.key; $("gm").value = c.model;
+  $("cfg").classList.add("on");
+});
+$("cfgOk").addEventListener("click", function(){
+  try{
+    localStorage.setItem("tq_gemini_key", $("gk").value.trim());
+    localStorage.setItem("tq_gemini_model", $("gm").value);
+  }catch(e){}
+  $("cfg").classList.remove("on");
+  toast("Ajustes guardados");
+});
+$("cfg").addEventListener("click", function(e){ if(e.target === this) this.classList.remove("on"); });
+$("imp").addEventListener("click", function(e){ if(e.target === this) this.classList.remove("on"); });
+
+/* =================== EL CEREBRO =================== */
+function construirPrompt(){
+  var lista = PERSONAS.map(function(p, i){
+    return { id:"p" + (i + 1), nombre:p.nombre, necesita:p.necesito, ofrece:p.ofrezco };
+  });
+  return [
+"Eres el motor de emparejamiento de TRUEQUE, una herramienta de networking donde cada persona",
+"declara UNA cosa que necesita y UNA cosa que ofrece, ambas sin costo de arranque.",
+"",
+"Tu trabajo NO es encontrar personas parecidas. Es encontrar ASIMETRIA UTIL: alguien cuya OFERTA",
+"resuelve de verdad la NECESIDAD de otro. Parecerse de sector, de cargo o de etapa NO es un match.",
+"Dos personas que necesitan lo mismo NO son un match.",
+"",
+"REGLAS",
+"1. Un match existe solo si lo que B ofrece resuelve, total o parcialmente, lo que A necesita.",
+"2. Puntua de 0 a 100 segun que tan directamente la oferta resuelve la necesidad:",
+"   90 a 100: la oferta es exactamente lo que la necesidad pide.",
+"   70 a 89 : la oferta resuelve buena parte, falta un detalle.",
+"   50 a 69 : la oferta ayuda de forma indirecta pero real.",
+"   Menos de 50: NO lo reportes. Prefiero cero matches a un match tibio.",
+"3. tipo = \"reciproco\" cuando ademas la oferta de A resuelve la necesidad de B. Es el match mas",
+"   valioso. En ese caso llena tambien a_resuelve_b. Si no, tipo = \"directo\" y a_resuelve_b va null.",
+"4. No repitas la misma pareja en los dos sentidos. Un par de personas aparece una sola vez.",
+"5. Nunca inventes informacion que la persona no escribio. Trabaja solo con el texto dado.",
+"6. \"razon\" debe ser especifica y citar lo que cada uno escribio. Queda PROHIBIDO escribir frases",
+"   genericas como \"tienen perfiles complementarios\" o \"pueden explorar oportunidades de",
+"   colaboracion\". Prueba: si tu razon sirve para cualquier otra pareja, esta mal escrita.",
+"7. \"siguiente_paso\" es una accion concreta que A puede hacer hoy, maximo 15 palabras.",
+"8. Si a alguien nadie puede resolverle lo que pidio, NO le fuerces un match. Ponlo en \"huerfanos\"",
+"   explicando en \"por_que\" que oferta le falta a esta comunidad. Esa informacion vale oro.",
+"9. Escribe en espanol de Colombia, natural y directo. Sin gerundios de relleno.",
+"",
+"PARTICIPANTES",
+JSON.stringify(lista, null, 1),
+"",
+"Devuelve UNICAMENTE un JSON valido con esta forma, sin texto antes ni despues:",
+'{"matches":[{"a_id":"p1","b_id":"p4","score":88,"tipo":"reciproco","b_resuelve_a":"...","a_resuelve_b":"...","razon":"...","siguiente_paso":"..."}],"huerfanos":[{"id":"p7","por_que":"nadie en la comunidad ofrece ..."}]}'
+  ].join("\n");
+}
+
+$("copiarPrompt").addEventListener("click", function(){
+  if(PERSONAS.length < 2) return toast("Necesitas al menos dos participantes");
+  copiar(construirPrompt(), "Prompt copiado");
+});
+$("pegarRes").addEventListener("click", function(){
+  $("cfg").classList.remove("on");
+  $("impErr").style.display = "none";
+  $("impTxt").value = "";
+  $("imp").classList.add("on");
+});
+$("impNo").addEventListener("click", function(){ $("imp").classList.remove("on"); });
+$("impOk").addEventListener("click", function(){
+  var txt = $("impTxt").value.trim();
+  try{
+    var data = extraerJSON(txt);
+    $("imp").classList.remove("on");
+    guardarAnalisis(data, "manual");
+  }catch(e){
+    var el = $("impErr"); el.style.display = "block";
+    el.textContent = "No pude leer ese JSON: " + e.message;
+  }
+});
+
+function extraerJSON(txt){
+  var s = txt.trim().replace(/^```(?:json)?\s*/i, "").replace(/```\s*$/, "").trim();
+  var a = s.indexOf("{"), b = s.lastIndexOf("}");
+  if(a < 0 || b < 0) throw new Error("no encontré un objeto JSON");
+  var o = JSON.parse(s.slice(a, b + 1));
+  if(!o || !Array.isArray(o.matches)) throw new Error("falta la lista 'matches'");
+  return o;
+}
+
+$("analizar").addEventListener("click", function(){
+  if(PERSONAS.length < 2) return toast("Necesitas al menos dos participantes");
+  var cfg = leerCfg();
+  if(!cfg.key){
+    $("cfg").classList.add("on");
+    return toast("Primero pega tu clave de Gemini");
+  }
+  var btn = this;
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spin"></span>Analizando ' + PERSONAS.length + " perfiles";
+  $("aviso").innerHTML = "";
+
+  fetch("https://generativelanguage.googleapis.com/v1beta/models/" + cfg.model +
+        ":generateContent?key=" + encodeURIComponent(cfg.key), {
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({
+      contents:[{role:"user", parts:[{text: construirPrompt()}]}],
+      generationConfig:{ temperature:0.15, responseMimeType:"application/json", maxOutputTokens:8192 }
+    })
+  }).then(function(r){
+    return r.json().then(function(j){
+      if(!r.ok){
+        var m = (j.error && j.error.message) || ("HTTP " + r.status);
+        if(r.status === 400 && /API key/i.test(m)) m = "La clave de Gemini no es válida. Revísala en Ajustes.";
+        if(r.status === 429) m = "Gemini te limitó por cuota. Espera un minuto y vuelve a intentar.";
+        throw new Error(m);
+      }
+      return j;
+    });
+  }).then(function(j){
+    var c = j.candidates && j.candidates[0];
+    if(!c) throw new Error("El modelo no devolvió nada. Intenta de nuevo.");
+    if(c.finishReason === "MAX_TOKENS")
+      throw new Error("La respuesta se cortó por tamaño. Prueba con menos participantes o con gemini-2.5-pro.");
+    var txt = (c.content && c.content.parts || []).map(function(p){ return p.text || ""; }).join("");
+    return guardarAnalisis(extraerJSON(txt), cfg.model);
+  }).catch(function(err){
+    $("aviso").innerHTML = '<div class="alert alert-bad"><b>El análisis falló.</b> ' + esc(err.message) + "</div>";
+  }).then(function(){
+    btn.disabled = false; btn.textContent = "Analizar con IA";
+  });
+});
+
+function guardarAnalisis(data, modelo){
+  /* p1, p2... vuelven a ser uuid reales */
+  var mapa = {};
+  PERSONAS.forEach(function(p, i){ mapa["p" + (i + 1)] = p.id; });
+
+  var vistos = {};
+  var filas = (data.matches || []).map(function(m){
+    var a = mapa[m.a_id], b = mapa[m.b_id];
+    if(!a || !b || a === b) return null;
+    var llave = [a, b].sort().join("|");
+    if(vistos[llave]) return null;
+    vistos[llave] = 1;
+    var s = parseInt(m.score, 10);
+    if(!(s >= 50)) return null;
+    return {
+      a_id:a, b_id:b, score:Math.min(100, s),
+      tipo: m.tipo === "reciproco" ? "reciproco" : "directo",
+      b_resuelve_a: m.b_resuelve_a || null,
+      a_resuelve_b: m.tipo === "reciproco" ? (m.a_resuelve_b || null) : null,
+      razon: m.razon || null,
+      siguiente_paso: m.siguiente_paso || null
+    };
+  }).filter(Boolean);
+
+  HUERFANOS = (data.huerfanos || []).map(function(h){
+    return { id: mapa[h.id], por_que: h.por_que };
+  }).filter(function(h){ return !!h.id; });
+  guardarHuerfanos();
+
+  var descartados = (data.matches || []).length - filas.length;
+
+  return rpc("save_trueque_matches", {
+    p_pass: PASS, p_comunidad: COM, p_matches: filas, p_modelo: modelo
+  }).then(function(){
+    return rpc("get_trueque_matches", {p_pass: PASS, p_comunidad: COM});
+  }).then(function(rows){
+    MATCHES = rows || [];
+    render();
+    var msg = "<b>Análisis listo.</b> " + MATCHES.length +
+      (MATCHES.length === 1 ? " conexión" : " conexiones") +
+      " sobre " + PERSONAS.length + " participantes";
+    if(descartados > 0) msg += ". Descarté " + descartados + " por débiles o repetidas";
+    if(HUERFANOS.length) msg += ". " + HUERFANOS.length + " persona" +
+      (HUERFANOS.length === 1 ? "" : "s") + " sin quien le resuelva, revisa la pestaña de vacíos";
+    $("aviso").innerHTML = '<div class="alert alert-ok">' + msg + ".</div>";
+    document.querySelector('.tab[data-pane="pMatch"]').click();
+  });
+}
+
+/* los huerfanos no viven en la base todavia: quedan por comunidad en este equipo */
+function guardarHuerfanos(){
+  try{ localStorage.setItem("tq_huerfanos_" + COM, JSON.stringify(HUERFANOS)); }catch(e){}
+}
+function leerHuerfanosGuardados(){
+  try{ return JSON.parse(localStorage.getItem("tq_huerfanos_" + COM) || "[]"); }
+  catch(e){ return []; }
+}
+
+/* =================== CSV =================== */
+$("csv").addEventListener("click", function(){
+  if(!PERSONAS.length) return toast("No hay nada que exportar");
+  function q(v){ return '"' + String(v == null ? "" : v).replace(/"/g, '""') + '"'; }
+  var filas = [["fecha","nombre","email","celular","necesita","ofrece"].map(q).join(",")];
+  PERSONAS.forEach(function(p){
+    filas.push([p.created_at, p.nombre, p.email, p.celular, p.necesito, p.ofrezco].map(q).join(","));
+  });
+  if(MATCHES.length){
+    filas.push("");
+    filas.push(["score","tipo","persona_a","email_a","persona_b","email_b","b_resuelve_a","a_resuelve_b","razon","siguiente_paso"].map(q).join(","));
+    MATCHES.forEach(function(m){
+      filas.push([m.score,m.tipo,m.a_nombre,m.a_email,m.b_nombre,m.b_email,
+                  m.b_resuelve_a,m.a_resuelve_b,m.razon,m.siguiente_paso].map(q).join(","));
+    });
+  }
+  var blob = new Blob(["﻿" + filas.join("\r\n")], {type:"text/csv;charset=utf-8"});
+  var a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "trueque-" + COM + "-" + new Date().toISOString().slice(0,10) + ".csv";
+  a.click();
+  setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1500);
+});
+
+})();
+</script>
+</body>
+</html>
