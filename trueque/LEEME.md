@@ -27,9 +27,8 @@ Los nombres bonitos de comunidades conocidas están en el objeto `NOMBRES` dentr
 
 ## Contraseña del panel
 
-`Trueque-ICONE-2026`
-
-Vive únicamente dentro de las funciones de Postgres, nunca en el HTML. Para cambiarla hay que
+**No vive en este repositorio, a propósito.** Está escrita dentro de las funciones de
+Postgres y nada más. Pídesela a Jorge. Para cambiarla hay que
 reemplazarla en las cinco funciones que la validan (`get_trueque`, `get_trueque_comunidades`,
 `delete_trueque`, `save_trueque_matches`, `get_trueque_matches`).
 
