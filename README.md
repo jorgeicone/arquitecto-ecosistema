@@ -1,2 +1,2 @@
 # arquitecto-ecosistema
-Arquitecto de Ecosistema de Productividad · ICONE ialabs
+Arquitecto de Ecosistema de Productividad · ICONEialabs
